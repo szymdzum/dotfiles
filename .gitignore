@@ -1,0 +1,11 @@
+# SSH private keys and sensitive files
+.ssh/id_rsa
+.ssh/id_ed25519
+.ssh/*_key
+.ssh/*.key
+.ssh/known_hosts*
+
+# Other sensitive files
+*.pem
+*.key
+*.secret

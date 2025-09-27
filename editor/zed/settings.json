@@ -1,0 +1,280 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+
+{
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+      "enterprise_uri": null
+    },
+    "enabled_in_text_threads": false
+  },
+  "agent": {
+    "always_allow_tool_actions": true
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "icon_theme": "Seti Icon Theme",
+  "buffer_font_family": "Menlo",
+  "ui_font_size": 18,
+  "buffer_font_size": 17,
+  "buffer_line_height": "comfortable",
+  "buffer_font_features": {
+    "calt": false,
+    "liga": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Monospace dark"
+  },
+  "file_finder": {
+    "modal_max_width":"small"
+  },
+  "confirm_quit": true,
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": true
+  },
+  "tabs": {
+    "close_position": "right",
+    "file_icons": true,
+    "git_status": true,
+    "activate_on_close": "history",
+    "show_close_button": "hover",
+    "show_diagnostics": "off"
+  },
+  "journal": {
+    "path": "~",
+    "hour_format": "hour12"
+  },
+
+
+  // Project Panel Settings
+  "project_panel": {
+    // Increase spacing between entries for bigger appearance
+    "entry_spacing": "comfortable", // or "standard" for smaller
+    "button": true,
+    "default_width": 200,
+    "dock": "left",
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 20,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": false,
+
+    "indent_guides": {
+      "show": "never" // This removes the lines when folders open
+    }
+  },
+
+
+  // Workspace restoration
+  "restore_on_startup": "last_session",
+  "restore_on_file_reopen": true,
+  "close_on_file_delete": false,
+  "cursor_blink": true,
+  "relative_line_numbers": false,
+
+  // Editor defaults
+  "tab_size": 2,
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "fixed"
+  },
+
+  // Manual-save / manual-format workflow
+  // Autosave disabled and global format-on-save turned off so formatting happens only when you invoke it.
+  "autosave": "off",
+  "format_on_save": "off",
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+
+  // Git integration
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "delay_ms": 600
+    }
+  },
+
+  // File associations
+  "file_types": {
+    "Astro": ["astro"],
+    "TypeScript": ["ts", "tsx"],
+    "JavaScript": ["js", "jsx", "mjs"],
+    "JSON": ["json", "jsonc"],
+    "Markdown": ["md", "mdx"]
+  },
+
+  // Inlay hints / diagnostics / editor niceties
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+
+  "lsp": {
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "all",
+          "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayVariableTypeHints": true,
+          "includeInlayVariableTypeHintsWhenTypeMatchesName": true,
+          "includeInlayPropertyDeclarationTypeHints": true,
+          "includeInlayFunctionLikeReturnTypeHints": true,
+          "includeInlayEnumMemberValueHints": true
+        }
+      }
+    }
+  },
+  // Language-specific settings
+  "languages": {
+    // TypeScript/TSX: prefer the language server (Deno LSP) for formatting; formatting on save is disabled
+    "TypeScript": {
+      "tab_size": 2,
+      "format_on_save": "off",
+      "formatter": "language_server",
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.removeUnusedImports": true,
+        "source.addMissingImports": true
+      },
+      "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": true,
+        "show_type_hints": true
+      },
+      // Prefer deno LSP; explicitly disable alternative TS servers that would conflict
+      "language_servers": ["deno", "!typescript-language-server", "!vtsls"]
+    },
+
+    "TSX": {
+      "tab_size": 2,
+      "format_on_save": "off",
+      "formatter": "language_server",
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.removeUnusedImports": true,
+        "source.addMissingImports": true
+      },
+      "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": true,
+        "show_type_hints": true
+      },
+      "language_servers": ["deno", "!typescript-language-server", "!vtsls"]
+    },
+
+    // JavaScript: prefer language server formatting when available; fallback to external Prettier if desired.
+    "JavaScript": {
+      "tab_size": 2,
+      "format_on_save": "off",
+      "formatter": "language_server",
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.removeUnusedImports": true
+      },
+      "language_servers": [
+        "deno",
+        "!typescript-language-server",
+        "!vtsls",
+        "!eslint"
+      ]
+    },
+
+    // Astro / JSON: keep formatting off on save at project level, but leave formatter configured to prettier
+    "Astro": {
+      "tab_size": 2,
+      "format_on_save": "off",
+      "formatter": "prettier"
+    },
+
+    "JSON": {
+      "tab_size": 2,
+      "format_on_save": "off",
+      "formatter": "prettier"
+    },
+
+    "Markdown": {
+      "tab_size": 2,
+      "format_on_save": "off",
+      "wrap_guides": [80],
+      "soft_wrap": "editor_width"
+    },
+
+    // Python: use Black via external command; format on save disabled so formatting is manual
+    "Python": {
+      "tab_size": 4,
+      "format_on_save": "off",
+      "formatter": {
+        "external": {
+          "command": "black",
+          "arguments": ["-"]
+        }
+      },
+      "remove_trailing_whitespace_on_save": true
+    }
+  },
+
+    "tasks": {
+      "variables": {},
+      "enabled": true,
+      "prefer_lsp": false
+    },
+
+
+      "terminal": {
+        "alternate_scroll": "off",
+        "blinking": "terminal_controlled",
+        "copy_on_select": true,
+        "keep_selection_on_copy": true,
+        "dock": "bottom",
+        "default_width": 640,
+        "default_height": 320,
+        "detect_venv": {
+          "on": {
+            "directories": [".env", "env", ".venv", "venv"],
+            "activate_script": "default"
+          }
+        },
+        "env": {},
+        "font_family": null,
+        "font_features": null,
+        "font_size": null,
+        "line_height": "comfortable",
+        "minimum_contrast": 45,
+        "option_as_meta": false,
+        "button": true,
+        "shell": "system",
+        "toolbar": {
+          "breadcrumbs": true
+        },
+        "working_directory": "current_project_directory",
+        "scrollbar": {
+          "show": null
+        }
+      }
+
+  // Notes:
+  // - Formatting is intentionally disabled globally and per-language to support a manual "format on key" workflow.
+  // - Recommended keybinding on macOS: Cmd+Shift+I bound to "Format Document" in Zed's keybindings UI.
+  // - For TypeScript/Deno: ensure `deno` is installed and available on PATH so the Deno LSP starts.
+  // - For Python: ensure `black` is installed and available on PATH (e.g. `pip install black` or `pipx install black`).
+  // - If you want JavaScript to use an external Prettier instead of LSP, replace the JS formatter with the external block:
+  //   "formatter": { "external": { "command": "prettier", "arguments": ["--stdin-filepath", "{buffer_path}"] } }
+  //
+  // This file focuses on manual formatting (TS/Deno/Python) as requested.
+  //
+  // End of settings.
+}
