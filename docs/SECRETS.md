@@ -49,7 +49,7 @@ get_openai_key() {
 ├── .zshrc.local          # Machine-specific config (not tracked)  
 ├── .zshrc.work          # Work-specific config (not tracked)
 └── Developer/
-    └── .dotfiles/
+    └── dotfiles/
         ├── shell/.zshrc  # Loads secrets if they exist
         └── .gitignore    # Excludes all secret patterns
 ```
@@ -78,7 +78,7 @@ chmod 600 ~/.env.secrets  # Restrict permissions
 # Edit with your preferred editor (direct or via symlink)
 zed ~/.env.secrets
 # OR use the convenient symlink in your dotfiles directory
-zed ~/Developer/.dotfiles/env.secrets
+zed ~/Developer/dotfiles/env.secrets
 ```
 
 ### Convenience Symlinks

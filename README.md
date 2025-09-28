@@ -24,8 +24,8 @@ dotfiles/
 
 ```bash
 # Clone the repository
-git clone <repository-url> ~/Developer/.dotfiles
-cd ~/Developer/.dotfiles
+git clone <repository-url> ~/Developer/dotfiles
+cd ~/Developer/dotfiles
 
 # Run the installation script
 ./install.sh
@@ -37,8 +37,8 @@ If you prefer to install components individually:
 
 ```bash
 # Shell configuration
-ln -sf ~/Developer/.dotfiles/shell/.zshrc ~/.zshrc
-
+ln -sf ~/Developer/dotfiles/shell/.zshrc ~/.zshrc
+ln -sf ~/Developer/dotfiles/zed/* ~/.config/zed/
 # Zed editor configuration  
 mkdir -p ~/.config/zed
 ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
