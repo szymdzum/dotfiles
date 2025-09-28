@@ -94,10 +94,10 @@ setup_zed() {
     
     # Handle Zed configuration files
     for file in settings.json keymap.json tasks.json; do
-        if [[ -f "$DOTFILES_DIR/$file" ]]; then
+        if [[ -f "$DOTFILES_DIR/zed/$file" ]]; then
             echo "Setting up Zed $file..."
             backup_file "$zed_config_dir/$file"
-            create_symlink "$DOTFILES_DIR/$file" "$zed_config_dir/$file"
+            create_symlink "$DOTFILES_DIR/zed/$file" "$zed_config_dir/$file"
         fi
     done
     

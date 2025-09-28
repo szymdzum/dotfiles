@@ -14,7 +14,7 @@ ln -sf ~/Developer/.dotfiles/shell/.zshrc ~/.zshrc
 
 # Manual Zed editor configuration  
 mkdir -p ~/.config/zed
-ln -sf ~/Developer/.dotfiles/{settings.json,keymap.json,tasks.json} ~/.config/zed/
+ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
 
 # Reload shell after changes
 source ~/.zshrc
@@ -49,7 +49,7 @@ cp ~/.zshrc ~/.zshrc.manual.$(date +%Y%m%d_%H%M%S)
 zsh -c "source shell/.zshrc && your_command_here"
 
 # Validate Zed configuration
-zed --validate settings.json
+zed --validate zed/settings.json
 
 # Check for broken symlinks
 find ~ -type l ! -exec test -e {} \; -print 2>/dev/null | grep dotfiles
@@ -62,7 +62,7 @@ This dotfiles setup uses symbolic links to keep configurations in version contro
 
 ```
 ~/.zshrc -> ~/Developer/.dotfiles/shell/.zshrc
-~/.config/zed/* -> ~/Developer/.dotfiles/{settings.json,keymap.json,tasks.json}
+~/.config/zed/* -> ~/Developer/.dotfiles/zed/*
 ```
 
 ### Directory Structure
@@ -70,10 +70,11 @@ This dotfiles setup uses symbolic links to keep configurations in version contro
 dotfiles/
 ├── shell/              # Shell configurations
 │   └── .zshrc         # Performance-optimized zsh config
+├── zed/               # Zed editor configurations
+│   ├── settings.json  # Zed editor settings
+│   ├── keymap.json    # Zed editor keybindings
+│   └── tasks.json     # Zed editor tasks
 ├── git/               # Git configuration (placeholder)
-├── settings.json      # Zed editor settings
-├── keymap.json        # Zed editor keybindings
-├── tasks.json         # Zed editor tasks
 ├── install.sh         # Modern installation script with backups
 ├── setup.sh           # Legacy setup script  
 ├── WARP.md            # This file
@@ -115,7 +116,7 @@ dotfiles/
 ## Development Workflow
 
 ### Adding New Configurations
-1. Add shell configs to `shell/` subdirectory, editor configs to root directory
+1. Add shell configs to `shell/` subdirectory, Zed configs to `zed/` subdirectory
 2. Update `install.sh` to handle new symlinks if needed
 3. Test installation in clean environment or with manual symlink
 4. Update README.md and this WARP.md with new features
@@ -127,7 +128,7 @@ dotfiles/
 4. Commit changes with descriptive message about shell improvement
 
 ### Modifying Zed Configuration
-1. Edit files in root directory (settings.json, keymap.json, tasks.json)
+1. Edit files in `zed/` directory (settings.json, keymap.json, tasks.json)
 2. Changes apply immediately due to symlinks (Zed auto-reloads)
 3. Test language server configurations and shortcuts
 4. Commit editor workflow improvements
@@ -153,7 +154,7 @@ zsh -n shell/.zshrc
 zsh -c "source shell/.zshrc && work blog"
 
 # Validate JSON configurations
-python3 -m json.tool settings.json
+python3 -m json.tool zed/settings.json
 
 # Check for broken symlinks after install
 ./install.sh && find ~ -path "*/dotfiles/*" -type l ! -exec test -e {} \; -print

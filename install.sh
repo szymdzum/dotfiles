@@ -44,13 +44,15 @@ create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
 
 # Install Zed editor configuration
 echo -e "${BLUE}✏️  Installing Zed configuration...${NC}"
-mkdir -p ~/.config/zed
-for file in "$DOTFILES_DIR"/{settings.json,keymap.json,tasks.json}; do
-    if [[ -f "$file" ]]; then
-        filename=$(basename "$file")
-        create_symlink "$file" "$HOME/.config/zed/$filename"
-    fi
-done
+if [[ -d "$DOTFILES_DIR/zed" ]]; then
+    mkdir -p ~/.config/zed
+    for file in "$DOTFILES_DIR/zed"/*; do
+        if [[ -f "$file" ]]; then
+            filename=$(basename "$file")
+            create_symlink "$file" "$HOME/.config/zed/$filename"
+        fi
+    done
+fi
 
 # Make sure the shell configuration is sourced
 echo -e "${BLUE}🔄 Reloading shell configuration...${NC}"

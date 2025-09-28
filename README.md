@@ -8,9 +8,10 @@ My personal development environment configuration files.
 dotfiles/
 ├── 🐚 shell/          # Shell configuration
 │   └── .zshrc         # Zsh configuration with modern aliases
-├── ⚙️  settings.json   # Zed editor settings
-├── 🎹 keymap.json     # Zed editor keybindings
-├── 📋 tasks.json      # Zed editor tasks
+├── ✏️  zed/            # Zed editor configuration
+│   ├── settings.json  # Zed editor settings
+│   ├── keymap.json    # Zed editor keybindings
+│   └── tasks.json     # Zed editor tasks
 ├── 🗃️  git/            # Git configuration (future)
 ├── 📦 install.sh      # Installation script
 ├── 🔧 setup.sh        # Legacy setup script
@@ -39,7 +40,7 @@ ln -sf ~/Developer/.dotfiles/shell/.zshrc ~/.zshrc
 
 # Zed editor configuration  
 mkdir -p ~/.config/zed
-ln -sf ~/Developer/.dotfiles/{settings.json,keymap.json,tasks.json} ~/.config/zed/
+ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
 ```
 
 ## ✨ Features
@@ -52,9 +53,9 @@ ln -sf ~/Developer/.dotfiles/{settings.json,keymap.json,tasks.json} ~/.config/ze
 - 🌈 **Custom color scheme** - Distinct colors for different file types (`.astro` files get purple!)
 
 ### Editor (Zed)
-- ⚙️ **Optimized settings** for development (settings.json)
-- 🎨 **Custom key bindings** (keymap.json)
-- 📝 **Development tasks** (tasks.json)
+- ⚙️ **Optimized settings** for development (zed/settings.json)
+- 🎨 **Custom key bindings** (zed/keymap.json)
+- 📝 **Development tasks** (zed/tasks.json)
 
 ## 🔄 Updating
 
