@@ -5,7 +5,28 @@
 .ssh/*.key
 .ssh/known_hosts*
 
-# Other sensitive files
+# Environment and secret files
+.env
+.env.*
+*.secret
+*.secrets
+
+# Authentication and certificates
 *.pem
 *.key
-*.secret
+*.p12
+*.pfx
+*.crt
+*.cert
+*.ca-bundle
+
+# API keys and tokens
+api_keys/
+tokens/
+credentials/
+
+# Machine-specific configs (not tracked)
+.zshrc.local
+.zshrc.work
+.bashrc.local
+.config/local/

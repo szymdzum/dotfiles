@@ -140,10 +140,11 @@ dotfiles/
 4. Machine-specific configs go in `~/.zshrc.local` (not tracked)
 
 ### Handling Secrets
+- **See SECRETS.md** for comprehensive secret management guide
 - Add sensitive environment variables to `~/.env.secrets` (loaded by .zshrc)
 - Machine-specific API keys go in `~/.zshrc.work` or `~/.zshrc.local`
 - Both files are loaded if they exist but not tracked in Git
-- SSH keys and certificates are explicitly ignored via `.gitignore`
+- Enhanced `.gitignore` covers all common secret patterns
 
 ### Testing Changes
 ```bash
