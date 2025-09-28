@@ -75,9 +75,25 @@ Your `.zshrc` already includes:
 touch ~/.env.secrets
 chmod 600 ~/.env.secrets  # Restrict permissions
 
-# Edit with your preferred editor
+# Edit with your preferred editor (direct or via symlink)
 zed ~/.env.secrets
+# OR use the convenient symlink in your dotfiles directory
+zed ~/Developer/.dotfiles/env.secrets
 ```
+
+### Convenience Symlinks
+Your dotfiles include handy symlinks for easy editing:
+```bash
+# From your dotfiles directory, you can edit:
+zed env.secrets    # -> ~/.env.secrets
+zed zshrc.local    # -> ~/.zshrc.local  
+zed zshrc.work     # -> ~/.zshrc.work
+```
+
+These symlinks are:
+- ✅ **Git-ignored** (never tracked)
+- ✅ **Automatically created** by install.sh
+- ✅ **Convenient** for editing from your dotfiles directory
 
 ### Example Secret File Structure
 ```bash

@@ -141,10 +141,10 @@ dotfiles/
 
 ### Handling Secrets
 - **See SECRETS.md** for comprehensive secret management guide
+- **Convenience symlinks**: `env.secrets`, `zshrc.local`, `zshrc.work` for easy editing
 - Add sensitive environment variables to `~/.env.secrets` (loaded by .zshrc)
 - Machine-specific API keys go in `~/.zshrc.work` or `~/.zshrc.local`
-- Both files are loaded if they exist but not tracked in Git
-- Enhanced `.gitignore` covers all common secret patterns
+- All secret files are git-ignored and accessible via symlinks in dotfiles directory
 
 ### Testing Changes
 ```bash
