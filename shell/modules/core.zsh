@@ -1,8 +1,9 @@
 # Core ZSH Configuration Module
 # Essential settings, exports, PATH, history, and colors
 
-# Skip everything when non-interactive (CI/automation won't thank you, but at least won't curse you)
-[[ $- != *i* ]] && return
+# Skip everything when in non-interactive contexts that we don't want to configure
+# Note: Allow zsh -c commands for testing, only skip for truly non-interactive contexts
+[[ -z "$PS1" && -z "$ZSH_VERSION" ]] && return
 
 # Performance optimizations
 DISABLE_AUTO_UPDATE="true"        # Oh-My-Zsh update checks are for people with time to burn
@@ -28,8 +29,8 @@ setopt HIST_SAVE_NO_DUPS
 setopt SHARE_HISTORY
 
 # PATH construction - Organized by priority
+# Only include existing directories to avoid PATH pollution
 path=(
-  $DEVELOPER_HOME/Scripts
   $HOME/.local/bin
   $HOME/.deno/bin
   $HOME/.cargo/bin
