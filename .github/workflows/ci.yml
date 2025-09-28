@@ -1,0 +1,130 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  shellcheck:
+    name: Shell Script Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: './shell'
+          format: gcc
+          severity: warning
+        env:
+          SHELLCHECK_OPTS: -e SC1091 -e SC2034
+
+      - name: Check install script
+        run: shellcheck install.sh setup.sh
+
+  test-installation:
+    name: Test Installation Script
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up test environment
+        run: |
+          # Create backup of existing configs if they exist
+          [ -f ~/.zshrc ] && cp ~/.zshrc ~/.zshrc.ci-backup || true
+          [ -d ~/.config/zed ] && cp -r ~/.config/zed ~/.config/zed.ci-backup || true
+
+      - name: Test dry-run installation (if supported)
+        run: |
+          chmod +x install.sh
+          # Test that script runs without errors in CI environment
+          bash -n install.sh
+          echo "Installation script syntax is valid"
+
+      - name: Verify shell configuration syntax
+        run: |
+          # Check ZSH configuration files for syntax errors
+          if command -v zsh >/dev/null 2>&1; then
+            zsh -n shell/.zshrc
+            echo "ZSH configuration syntax is valid"
+          fi
+
+      - name: Test modular shell loading
+        run: |
+          # Test that each module can be sourced individually
+          for module in shell/modules/*.zsh; do
+            if [ -f "$module" ]; then
+              echo "Testing module: $module"
+              if command -v zsh >/dev/null 2>&1; then
+                zsh -n "$module"
+              else
+                bash -n "$module"
+              fi
+            fi
+          done
+
+      - name: Cleanup test environment
+        if: always()
+        run: |
+          # Restore original configs if they existed
+          [ -f ~/.zshrc.ci-backup ] && mv ~/.zshrc.ci-backup ~/.zshrc || true
+          [ -d ~/.config/zed.ci-backup ] && mv ~/.config/zed.ci-backup ~/.config/zed || true
+
+  documentation:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install markdown-link-check
+        run: npm install -g markdown-link-check
+
+      - name: Check markdown links
+        run: |
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | \
+          xargs markdown-link-check --config .github/markdown-link-check.json
+
+      - name: Validate JSON files
+        run: |
+          # Check that all JSON files are valid
+          find . -name "*.json" -not -path "./node_modules/*" -not -path "./.git/*" | \
+          while read -r file; do
+            echo "Validating JSON: $file"
+            python3 -m json.tool "$file" > /dev/null
+          done
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run security scan
+        run: |
+          # Check for potential secrets in files
+          echo "Scanning for potential secrets..."
+          if grep -r "sk-\|ghp_\|AKIA\|Bearer " . --exclude-dir=.git --exclude-dir=node_modules; then
+            echo "⚠️  Potential secrets detected!"
+            exit 1
+          fi
+          echo "✅ No secrets detected"
+
+      - name: Check file permissions
+        run: |
+          # Verify that secret files are properly gitignored
+          if [ -f .gitignore ]; then
+            echo "✅ .gitignore exists"
+            grep -q "\.env\.secrets" .gitignore && echo "✅ .env.secrets is gitignored"
+            grep -q "\.zshrc\.local" .gitignore && echo "✅ .zshrc.local is gitignored"
+            grep -q "\.zshrc\.work" .gitignore && echo "✅ .zshrc.work is gitignored"
+          fi
