@@ -46,11 +46,11 @@ brew install nvm           # Node version management (lazy-loaded)
 - `~/.zshrc` → `~/Developer/dotfiles/shell/.zshrc`
 - `~/.config/zed/*` → `~/Developer/dotfiles/zed/*`
 
-### Backup System
-Before making changes, the installer:
-- ✅ Creates timestamped backups of existing files
-- ✅ Safely removes old symlinks
-- ✅ Preserves your original configurations
+### Git Version Control
+All configurations are version controlled with Git:
+- ✅ Track configuration changes over time
+- ✅ Easy rollback to previous versions
+- ✅ Secure backup through remote repositories
 
 ## 📂 Repository Structure
 
@@ -72,7 +72,7 @@ dotfiles/
 ├── 📋 docs/                     # Documentation
 │   ├── SECRETS.md              # Secret management guide
 │   └── SHELL_VALIDATION_REPORT.md # Performance analysis
-├── 🔧 install.sh                # Smart installation script
+├── 🔧 install.sh                # Installation script
 ├── 📄 LICENSE                   # MIT License
 ├── 🤝 CONTRIBUTING.md           # Contribution guidelines
 ├── 🔒 SECURITY.md               # Security policy
@@ -154,12 +154,11 @@ source ~/.zshrc  # Or restart terminal
 
 ### Uninstalling
 ```bash
-# Remove symlinks and restore backups
+# Remove symlinks
 rm ~/.zshrc ~/.config/zed/{settings,keymap,tasks}.json
 
-# Find and restore your backups
-ls -la ~/*.backup.*
-ls -la ~/.config/zed/*.backup.*
+# Your original configurations should be backed up in Git
+# or restored from system defaults
 ```
 
 ### Health Check

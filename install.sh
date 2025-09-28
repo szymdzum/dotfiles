@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dotfiles Installation Script
-# Symlinks configuration files from this dotfiles directory to their proper locations
+# Creates symlinks for configuration files from this dotfiles directory to their proper locations
 
 set -e
 
@@ -17,17 +17,15 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo -e "${BLUE}🏠 Installing dotfiles from: ${DOTFILES_DIR}${NC}"
 
-# Function to create symlink with backup
+# Function to create symlink
 create_symlink() {
     local source="$1"
     local target="$2"
     
-    if [[ -L "$target" ]]; then
-        echo -e "${YELLOW}⚠️  Removing existing symlink: $target${NC}"
+    # Remove existing symlink or file
+    if [[ -L "$target" || -f "$target" ]]; then
+        echo -e "${YELLOW}⚠️  Removing existing: $target${NC}"
         rm "$target"
-    elif [[ -f "$target" ]]; then
-        echo -e "${YELLOW}📦 Backing up existing file: $target${NC}"
-        mv "$target" "${target}.backup.$(date +%Y%m%d_%H%M%S)"
     fi
     
     ln -s "$source" "$target"
