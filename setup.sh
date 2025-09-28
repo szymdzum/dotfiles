@@ -68,7 +68,7 @@ setup() {
     # .zshrc
     echo "Setting up .zshrc"
     backup_file "$HOME/.zshrc"
-    create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+    create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
     
     # Set up SSH configuration
     setup_ssh
@@ -84,25 +84,24 @@ setup() {
 # Run the setup
 setup
 
-# Function to set up VSCode configuration
-setup_vscode() {
-    echo "Setting up VSCode configuration..."
+# Function to set up Zed editor configuration
+setup_zed() {
+    echo "Setting up Zed editor configuration..."
     
-    # Create VSCode config directory if it doesn't exist
-    local vscode_config_dir="$HOME/Library/Application Support/Code/User"
-    mkdir -p "$vscode_config_dir"
+    # Create Zed config directory if it doesn't exist
+    local zed_config_dir="$HOME/.config/zed"
+    mkdir -p "$zed_config_dir"
     
-    # Handle VSCode settings
-    echo "Setting up VSCode settings..."
-    backup_file "$vscode_config_dir/settings.json"
-    create_symlink "$DOTFILES_DIR/.vscode/User/settings.json" "$vscode_config_dir/settings.json"
+    # Handle Zed configuration files
+    for file in settings.json keymap.json tasks.json; do
+        if [[ -f "$DOTFILES_DIR/$file" ]]; then
+            echo "Setting up Zed $file..."
+            backup_file "$zed_config_dir/$file"
+            create_symlink "$DOTFILES_DIR/$file" "$zed_config_dir/$file"
+        fi
+    done
     
-    # Handle VSCode keybindings
-    echo "Setting up VSCode keybindings..."
-    backup_file "$vscode_config_dir/keybindings.json"
-    create_symlink "$DOTFILES_DIR/.vscode/User/keybindings.json" "$vscode_config_dir/keybindings.json"
-    
-    echo "VSCode configuration complete!"
+    echo "Zed configuration complete!"
 }
 
 # Add VSCode setup to main setup function
@@ -112,13 +111,13 @@ setup() {
     # .zshrc
     echo "Setting up .zshrc"
     backup_file "$HOME/.zshrc"
-    create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+    create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
     
     # Set up SSH configuration
     setup_ssh
     
-    # Set up VSCode configuration
-    setup_vscode
+    # Set up Zed configuration
+    setup_zed
     
     echo "Dotfiles setup complete!"
 }

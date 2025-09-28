@@ -1,6 +1,3 @@
-# macOS Claude Code .zshrc - Performance First, Aesthetics When Convenient
-# Because your terminal should load faster than your morning patience expires
-
 # Skip everything when non-interactive (CI/automation won't thank you, but at least won't curse you)
 [[ $- != *i* ]] && return
 
@@ -173,18 +170,6 @@ search() {
   fi
 }
 
-# Quick project setup
-project() {
-  if [ -z "$1" ]; then
-    echo "Usage: project <name>"
-    return 1
-  fi
-  mkdir -p "$DEVELOPER_HOME/$1" && cd "$DEVELOPER_HOME/$1"
-  git init
-  echo "# $1" > README.md
-  echo "✅ Project '$1' created and initialized"
-}
-
 # Smart git commit with branch info
 commit() {
   if [ -z "$1" ]; then
@@ -263,20 +248,6 @@ esac
 
 PATH=~/.console-ninja/.bin:$PATH
 
-# Warp-enhanced development workflow
-# Test runner with output formatting
-test() {
-  echo "🧪 Running tests..."
-  if [ -f "package.json" ]; then
-    npm test
-  elif [ -f "Cargo.toml" ]; then
-    cargo test
-  elif [ -f "pyproject.toml" ] || [ -f "setup.py" ]; then
-    python -m pytest
-  else
-    echo "⚠️ No test configuration found"
-  fi
-}
 
 # Enhanced directory navigation with context
 work() {
@@ -286,13 +257,4 @@ work() {
     cd "$DEVELOPER_HOME/$1" 2>/dev/null || cd "$REPOS/$1" 2>/dev/null || echo "Project '$1' not found"
   fi
   pwd
-}
-
-# System monitor (Warp-friendly output)
-monitor() {
-  echo "📊 System Status:"
-  echo "CPU: $(top -l 1 | grep 'CPU usage' | awk '{print $3}' | cut -d% -f1)%"
-  echo "Memory: $(memory_pressure | grep 'System-wide memory free percentage' | awk '{print $5}' || echo 'N/A')"
-  echo "Disk: $(df -h / | tail -1 | awk '{print $5}')"
-  echo "Load: $(uptime | awk '{print $(NF-2), $(NF-1), $NF}')"
 }
