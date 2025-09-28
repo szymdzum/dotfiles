@@ -10,8 +10,8 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 ./install.sh
 
 # Manual shell configuration only
-ln -sf ~/Developer/.dotfiles/shell/.zshrc ~/.zshrc
-
+ln -sf ~/Developer/dotfiles/shell/.zshrc ~/.zshrc
+ln -sf ~/Developer/dotfiles/zed/* ~/.config/zed/
 # Manual Zed editor configuration  
 mkdir -p ~/.config/zed
 ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
@@ -26,8 +26,8 @@ source ~/.zshrc
 git pull && ./install.sh
 
 # Check what files are currently symlinked
-ls -la ~ | grep ".dotfiles"
-ls -la ~/.config/zed/ | grep ".dotfiles"
+ls -la ~ | grep "dotfiles"
+ls -la ~/.config/zed/ | grep "dotfiles"
 
 # Test shell configuration without applying
 zsh -n shell/.zshrc  # Syntax check
@@ -61,8 +61,8 @@ find ~ -type l ! -exec test -e {} \; -print 2>/dev/null | grep dotfiles
 This dotfiles setup uses symbolic links to keep configurations in version control while placing them where applications expect them:
 
 ```
-~/.zshrc -> ~/Developer/.dotfiles/shell/.zshrc
-~/.config/zed/* -> ~/Developer/.dotfiles/zed/*
+~/.zshrc -> ~/Developer/dotfiles/shell/.zshrc
+~/.config/zed/* -> ~/Developer/dotfiles/zed/*
 ```
 
 ### Directory Structure
@@ -134,7 +134,7 @@ dotfiles/
 4. Commit editor workflow improvements
 
 ### Syncing Across Machines
-1. Clone repository to `~/Developer/.dotfiles` on new machine
+1. Clone repository to `~/Developer/dotfiles` on new machine
 2. Run `./install.sh` for automatic setup with backups
 3. Install required tools: `eza`, `pyenv`, `nvm` if missing
 4. Machine-specific configs go in `~/.zshrc.local` (not tracked)

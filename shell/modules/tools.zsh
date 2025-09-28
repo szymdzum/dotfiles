@@ -17,14 +17,10 @@ nvm() {
 # Check if pyenv is installed before configuring
 if command -v pyenv &> /dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
-  
+
   # Lazy load pyenv
   pyenv() {
     eval "$(command pyenv init -)"
     pyenv "$@"
   }
 fi
-
-# === Console Ninja (if used) ===
-# TODO: Audit if this is still needed
-PATH=~/.console-ninja/.bin:$PATH
