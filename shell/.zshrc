@@ -10,7 +10,7 @@
 # 6. functions.zsh - Custom functions
 
 # Get the directory where this .zshrc file is located
-DOTFILES_DIR="${${(%):-%x}:A:h:h}"
+DOTFILES_DIR="/Users/DZUMAS02/Developer/dotfiles"
 MODULES_DIR="$DOTFILES_DIR/shell/modules"
 
 # Load core modules in order
