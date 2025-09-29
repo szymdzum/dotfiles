@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Prompt and Theme Module
 # Oh-My-Zsh configuration, theme, and plugins
 
@@ -14,7 +15,7 @@ plugins=(
 )
 
 # Load Oh My Zsh
-source $ZSH/oh-my-zsh.sh
+source "$ZSH"/oh-my-zsh.sh
 
 # Autosuggestions performance tweaks - Because suggestions shouldn't need suggestions
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20

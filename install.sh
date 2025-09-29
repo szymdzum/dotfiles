@@ -6,7 +6,7 @@
 set -e
 
 # Colors for output
-RED='\033[0;31m'
+# RED='\033[0;31m' # Unused - removing to fix SC2034
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
@@ -55,6 +55,7 @@ fi
 # Make sure the shell configuration is sourced
 echo -e "${BLUE}🔄 Reloading shell configuration...${NC}"
 if [[ "$SHELL" == */zsh ]]; then
+    # shellcheck disable=SC1090
     source ~/.zshrc || true
 fi
 

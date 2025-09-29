@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Core ZSH Configuration Module
 # Essential settings, exports, PATH, history, and colors
 
@@ -31,12 +32,12 @@ setopt SHARE_HISTORY
 # PATH construction - Organized by priority
 # Only include existing directories to avoid PATH pollution
 path=(
-  $HOME/.local/bin
-  $HOME/.deno/bin
-  $HOME/.cargo/bin
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-  $path
+  "$HOME/.local/bin"
+  "$HOME/.deno/bin"
+  "$HOME/.cargo/bin"
+  "/opt/homebrew/bin"
+  "/opt/homebrew/sbin"
+  "${path[@]}"
 )
 export PATH
 
