@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Dotfiles Installation Script
-# Symlinks configuration files from this dotfiles directory to their proper locations
+# Creates symlinks for configuration files from this dotfiles directory to their proper locations
 
 set -e
 
 # Colors for output
-RED='\033[0;31m'
+# RED='\033[0;31m' # Unused - removing to fix SC2034
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
@@ -17,17 +17,15 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo -e "${BLUE}🏠 Installing dotfiles from: ${DOTFILES_DIR}${NC}"
 
-# Function to create symlink with backup
+# Function to create symlink
 create_symlink() {
     local source="$1"
     local target="$2"
     
-    if [[ -L "$target" ]]; then
-        echo -e "${YELLOW}⚠️  Removing existing symlink: $target${NC}"
+    # Remove existing symlink or file
+    if [[ -L "$target" || -f "$target" ]]; then
+        echo -e "${YELLOW}⚠️  Removing existing: $target${NC}"
         rm "$target"
-    elif [[ -f "$target" ]]; then
-        echo -e "${YELLOW}📦 Backing up existing file: $target${NC}"
-        mv "$target" "${target}.backup.$(date +%Y%m%d_%H%M%S)"
     fi
     
     ln -s "$source" "$target"
@@ -57,6 +55,7 @@ fi
 # Make sure the shell configuration is sourced
 echo -e "${BLUE}🔄 Reloading shell configuration...${NC}"
 if [[ "$SHELL" == */zsh ]]; then
+    # shellcheck disable=SC1090
     source ~/.zshrc || true
 fi
 

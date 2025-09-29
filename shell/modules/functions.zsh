@@ -1,15 +1,18 @@
+# shellcheck shell=bash
 # Functions Module
 # Custom shell functions
 
 # Create directory and enter it
 mkcd() {
-  mkdir -p "$1" && cd "$1"
+  mkdir -p "$1" && cd "$1" || return
 }
 
 # Backup file with timestamp
 backup() {
-  cp "$1"{,.backup.$(date +%Y%m%d_%H%M%S)}
-  echo "✓ Created backup: $1.backup.$(date +%Y%m%d_%H%M%S)"
+  local timestamp
+  timestamp=$(date +%Y%m%d_%H%M%S)
+  cp "$1" "$1.backup.$timestamp"
+  echo "✓ Created backup: $1.backup.$timestamp"
 }
 
 # Search with ripgrep or fallback to grep
@@ -27,7 +30,8 @@ commit() {
     echo "Usage: commit <message>"
     return 1
   fi
-  local branch=$(git branch --show-current 2>/dev/null)
+  local branch
+  branch=$(git branch --show-current 2>/dev/null)
   if [ -n "$branch" ]; then
     git add . && git commit -m "$1" && echo "📝 Committed to branch: $branch"
   else
@@ -50,7 +54,8 @@ fz() {
     echo "Usage: fz <pattern>"
     return 1
   fi
-  local file=$(find . -name "*$1*" -type f | head -1)
+  local file
+  file=$(find . -name "*$1*" -type f | head -1)
   if [ -n "$file" ]; then
     zed "$file"
   else

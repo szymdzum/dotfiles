@@ -1,0 +1,1 @@
+/Users/szymondzumak/.zshrc.work

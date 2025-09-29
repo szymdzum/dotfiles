@@ -33,15 +33,6 @@ ls -la ~/.config/zed/ | grep "dotfiles"
 zsh -n shell/.zshrc  # Syntax check
 ```
 
-### Backup & Recovery
-```bash
-# Restore from automatic backup (created during install)
-ls -la ~/*.backup.*  # Find backup files
-mv ~/.zshrc.backup.YYYYMMDD_HHMMSS ~/.zshrc
-
-# Create manual backup before making changes
-cp ~/.zshrc ~/.zshrc.manual.$(date +%Y%m%d_%H%M%S)
-```
 
 ### Development & Testing
 ```bash
@@ -75,17 +66,17 @@ dotfiles/
 │   ├── keymap.json    # Zed editor keybindings
 │   └── tasks.json     # Zed editor tasks
 ├── git/               # Git configuration (placeholder)
-├── install.sh         # Modern installation script with backups
-├── setup.sh           # Legacy setup script  
+├── install.sh         # Installation script for symlink creation
+├── setup.sh           # Legacy setup script
 ├── WARP.md            # This file
 └── README.md          # User documentation
 ```
 
 ### Installation Flow
-1. **install.sh** creates automatic timestamped backups of existing configs
-2. Removes old symlinks, preserves real files as `.backup.TIMESTAMP`
-3. Creates new symlinks from dotfiles to home directory locations
-4. Handles both shell and editor configurations in one run
+1. **install.sh** removes any existing configuration files or symlinks
+2. Creates new symlinks from dotfiles to home directory locations  
+3. Handles both shell and editor configurations in one run
+4. Uses Git version control for configuration history and recovery
 
 ## Key Features
 

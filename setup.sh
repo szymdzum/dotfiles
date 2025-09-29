@@ -16,7 +16,8 @@ echo "Dotfiles directory: $DOTFILES_DIR"
 # Function to create a backup of an existing file
 backup_file() {
     local file=$1
-    local backup="${file}.backup.$(date +%Y%m%d%H%M%S)"
+    local backup
+    backup="${file}.backup.$(date +%Y%m%d%H%M%S)"
     
     if [[ -e "$file" && ! -L "$file" ]]; then
         echo "Backing up $file to $backup"
@@ -89,11 +90,12 @@ setup_zed() {
     echo "Setting up Zed editor configuration..."
     
     # Create Zed config directory if it doesn't exist
-    local zed_config_dir="$HOME/.config/zed"
+    local zed_config_dir
+    zed_config_dir="$HOME/.config/zed"
     mkdir -p "$zed_config_dir"
     
     # Handle Zed configuration files
-    for file in settings.json keymap.json tasks.json; do
+    for file in settings.jsonc keymap.jsonc tasks.jsonc; do
         if [[ -f "$DOTFILES_DIR/zed/$file" ]]; then
             echo "Setting up Zed $file..."
             backup_file "$zed_config_dir/$file"

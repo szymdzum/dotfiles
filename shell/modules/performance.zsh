@@ -1,10 +1,12 @@
-# Performance Optimization Module
+# shellcheck shell=bash
+# Performance optimizations module
 # Completion system, caching, and startup optimizations
 
 # Completion system - Cache like your performance depends on it (because it does)
 autoload -Uz compinit
 
 # Only rebuild completions once per day, like a sane person
+# shellcheck disable=SC1036,SC1072,SC1073,SC1009
 if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
     compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
 else

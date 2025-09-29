@@ -20,12 +20,8 @@ source "$MODULES_DIR/prompt.zsh"
 source "$MODULES_DIR/tools.zsh"
 source "$MODULES_DIR/aliases.zsh"
 source "$MODULES_DIR/functions.zsh"
+source "$MODULES_DIR/local.zsh"
+source "$MODULES_DIR/work.zsh"
 
 # Load private environment variables (API keys, secrets)
 [ -f ~/.env.secrets ] && source ~/.env.secrets
-
-# Load local machine-specific configurations
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-# Load work-specific configurations
-[ -f ~/.zshrc.work ] && source ~/.zshrc.work

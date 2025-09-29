@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Aliases Module
 # Organized aliases by category
 
@@ -14,8 +15,8 @@ alias mv='mv -i'      # Interactive move
 alias rm='rm -i'      # Interactive remove (safety first)
 
 # === Directory Navigation ===
-alias dev="cd $DEVELOPER_HOME"
-alias repos="cd $REPOS"
+alias dev="cd \$DEVELOPER_HOME"
+alias repos="cd \$REPOS"
 alias docs="cd ~/Documents"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"

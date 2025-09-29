@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Tools Module
 # Development tool configurations with optimized loading
 
