@@ -6,10 +6,10 @@
 [[ -z "$PS1" && -z "$ZSH_VERSION" ]] && return
 
 # Performance optimizations
-DISABLE_AUTO_UPDATE="true"        # Oh-My-Zsh update checks are for people with time to burn
-DISABLE_MAGIC_FUNCTIONS="true"    # Magic is for Harry Potter, not shells
-DISABLE_COMPFIX="true"           # Skip permission paranoia
-DISABLE_UNTRACKED_FILES_DIRTY="true"  # Git status should be instant, not contemplative
+DISABLE_AUTO_UPDATE="true"           # Oh-My-Zsh update checks are for people with time to burn
+DISABLE_MAGIC_FUNCTIONS="true"       # Magic is for Harry Potter, not shells
+DISABLE_COMPFIX="true"               # Skip permission paranoia
+DISABLE_UNTRACKED_FILES_DIRTY="true" # Git status should be instant, not contemplative
 
 # Essential directories
 export DEVELOPER_HOME="$HOME/Developer"
@@ -50,7 +50,7 @@ export COLORTERM=truecolor
 export LS_COLORS="*.astro=95:*.ts=93:*.js=93:*.json=93:*.md=96:*.css=92:*.scss=92:*.html=94:*.vue=92:*.jsx=93:*.tsx=93:$LS_COLORS"
 
 # Claude Code optimizations
-export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1  # Stay in project root, don't wander
-export USE_BUILTIN_RIPGREP=0                       # Use system ripgrep (it's faster)
+export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1 # Stay in project root, don't wander
+export USE_BUILTIN_RIPGREP=0                      # Use system ripgrep (it's faster)
 export BASH_DEFAULT_TIMEOUT_MS=30000              # Reasonable timeout for macOS
 export DISABLE_TELEMETRY=1                        # What happens on your Mac, stays on your Mac
