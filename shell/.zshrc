@@ -10,7 +10,8 @@
 # 6. functions.zsh - Custom functions
 
 # Get the directory where this .zshrc file is located
-DOTFILES_DIR="/Users/DZUMAS02/Developer/dotfiles"
+# Works with symlinks by resolving the real path of this file
+DOTFILES_DIR="$(cd "$(dirname "$(readlink -f "${ZDOTDIR:-$HOME}/.zshrc" 2>/dev/null || echo "${ZDOTDIR:-$HOME}/.zshrc")")" && cd .. && pwd)"
 MODULES_DIR="$DOTFILES_DIR/shell/modules"
 
 # Load core modules in order
