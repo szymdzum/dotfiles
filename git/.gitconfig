@@ -35,3 +35,12 @@
 
 [include]
 	path = ~/.gitconfig.local
+
+# Conditional includes for work/personal identity
+# Work repos (any gitlab.kfplc.com remote)
+[includeIf "hasconfig:remote.*.url:*://gitlab.kfplc.com/**"]
+	path = ~/Developer/dotfiles/git/.gitconfig.work
+
+# Personal repos (any github.com/szymdzum remote)
+[includeIf "hasconfig:remote.*.url:*://*/szymdzum/**"]
+	path = ~/Developer/dotfiles/git/.gitconfig.personal

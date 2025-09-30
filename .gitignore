@@ -38,3 +38,6 @@ credentials/
 # Backup files
 *_backup.*
 *.backup.*
+
+# Local git config (do not track)
+git/.gitconfig.local
