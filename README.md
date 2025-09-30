@@ -14,7 +14,6 @@ dotfiles/
 │   └── tasks.json     # Zed editor tasks
 ├── 🗃️  git/            # Git configuration (future)
 ├── 📦 install.sh      # Installation script
-├── 🔧 setup.sh        # Legacy setup script
 ├── 📘 WARP.md         # AI assistant guidance
 ├── 🔒 SECRETS.md      # Secret management guide
 └── 📖 README.md       # This file
