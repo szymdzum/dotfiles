@@ -31,11 +31,6 @@ credentials/
 .bashrc.local
 .config/local/
 
-# Convenience symlinks to secret files (ignored)
-env.secrets
-zshrc.local
-zshrc.work
-
 # macOS
 .DS_Store
 */.DS_Store

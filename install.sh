@@ -60,14 +60,6 @@ if [[ "$SHELL" == */zsh ]]; then
     source ~/.zshrc || true
 fi
 
-# Create convenience symlinks for easy access to secret files
-echo -e "${BLUE}🔗 Creating convenience symlinks for secret files...${NC}"
-cd "$DOTFILES_DIR"
-ln -sf ~/.env.secrets ./env.secrets 2>/dev/null || true
-ln -sf ~/.zshrc.local ./zshrc.local 2>/dev/null || true
-ln -sf ~/.zshrc.work ./zshrc.work 2>/dev/null || true
-echo -e "${GREEN}✅ Secret file symlinks created (git-ignored)${NC}"
-
 echo -e "${GREEN}🎉 Dotfiles installation complete!${NC}"
 echo -e "${BLUE}💡 Run 'source ~/.zshrc' or restart your terminal to apply changes.${NC}"
-echo -e "${BLUE}🔑 Edit secrets easily: 'zed env.secrets' or 'zed zshrc.local'${NC}"
+echo -e "${BLUE}🔑 Edit secrets: 'zed ~/.env.secrets' or 'zed ~/.zshrc.local'${NC}"
