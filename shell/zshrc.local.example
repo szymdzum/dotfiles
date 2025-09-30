@@ -1,0 +1,119 @@
+# Machine-specific ZSH Configuration
+# Copy this file to ~/.zshrc.local and customize for your machine
+#
+# This file is sourced by .zshrc and is NOT tracked in version control
+# Use this for machine-specific settings that shouldn't be shared
+
+# ============================================================================
+# Paths and Directories
+# ============================================================================
+
+# Custom project directories
+# export PERSONAL_PROJECT_DIR="$HOME/MyProjects"
+# export WORK_PROJECT_DIR="$HOME/WorkProjects"
+
+# Add custom paths to PATH
+# export PATH="$HOME/bin:$PATH"
+# export PATH="/usr/local/custom/bin:$PATH"
+
+
+# ============================================================================
+# Machine-Specific Settings
+# ============================================================================
+
+# Proxy settings (if behind corporate proxy)
+# export HTTP_PROXY="http://proxy.company.com:8080"
+# export HTTPS_PROXY="http://proxy.company.com:8080"
+# export NO_PROXY="localhost,127.0.0.1,.local"
+
+# Editor preferences (override defaults)
+# export EDITOR="vim"
+# export VISUAL="code"
+
+# Language and locale
+# export LANG="en_US.UTF-8"
+# export LC_ALL="en_US.UTF-8"
+
+
+# ============================================================================
+# Development Environment
+# ============================================================================
+
+# Node.js / NVM configuration
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Python / Pyenv configuration
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
+# Ruby / RVM configuration
+# export PATH="$HOME/.rvm/bin:$PATH"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# Java configuration
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home"
+# export PATH="$JAVA_HOME/bin:$PATH"
+
+
+# ============================================================================
+# Custom Aliases
+# ============================================================================
+
+# Machine-specific aliases
+# alias myproject="cd $HOME/Projects/my-special-project"
+# alias work="cd $WORK_PROJECT_DIR"
+# alias personal="cd $PERSONAL_PROJECT_DIR"
+
+# SSH shortcuts
+# alias ssh-work="ssh user@work.server.com"
+# alias ssh-dev="ssh user@dev.server.com"
+
+# Docker shortcuts
+# alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
+# alias dclean="docker system prune -af"
+
+
+# ============================================================================
+# Functions
+# ============================================================================
+
+# Custom functions for this machine
+# backup_project() {
+#     local project_dir="$1"
+#     local backup_dir="$HOME/Backups/$(date +%Y%m%d)"
+#     mkdir -p "$backup_dir"
+#     tar -czf "$backup_dir/$(basename $project_dir).tar.gz" "$project_dir"
+#     echo "Backed up to: $backup_dir/$(basename $project_dir).tar.gz"
+# }
+
+
+# ============================================================================
+# Hostname-Specific Configuration
+# ============================================================================
+
+# Configure based on hostname
+# case "$(hostname)" in
+#     work-macbook*)
+#         export WORK_MODE=true
+#         # Work-specific settings
+#         ;;
+#     personal-macbook*)
+#         export WORK_MODE=false
+#         # Personal settings
+#         ;;
+# esac
+
+
+# ============================================================================
+# Notes
+# ============================================================================
+# This file is perfect for:
+# - Machine-specific paths and environment variables
+# - Local development server configurations
+# - Custom aliases for your workflow
+# - Settings that differ between work and personal machines
+# - Temporary experimental configurations
+#
+# Remember: This file is git-ignored and won't be synced across machines
