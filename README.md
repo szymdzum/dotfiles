@@ -57,6 +57,28 @@ ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
 - 🎨 **Custom key bindings** (zed/keymap.json)
 - 📝 **Development tasks** (zed/tasks.json)
 
+### Git Configuration
+- 🔧 **Standard Git settings** with helpful aliases
+- 🔐 **Pre-commit hook** for secret scanning (optional)
+- 📝 **Machine-specific overrides** via ~/.gitconfig.local
+
+## 🔒 Security
+
+Protect your secrets with the optional pre-commit hook:
+
+```bash
+# Install the pre-commit hook to scan for secrets
+cp git/hooks/pre-commit .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+```
+
+This hook will:
+- ✅ Scan for API keys, tokens, and passwords before commits
+- ✅ Block commits containing potential secrets
+- ✅ Provide clear guidance on proper secret management
+
+See [SECRETS.md](docs/SECRETS.md) for detailed secret management practices.
+
 ## 🔄 Updating
 
 ```bash
