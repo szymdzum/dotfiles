@@ -54,6 +54,14 @@ if [[ -d "$DOTFILES_DIR/zed" ]]; then
     done
 fi
 
+# Install Git configuration
+echo -e "${BLUE}🗃️  Installing Git configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/git/.gitconfig" ]]; then
+    create_symlink "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
+    echo -e "${YELLOW}⚠️  Remember to create ~/.gitconfig.local with your personal details${NC}"
+    echo -e "${BLUE}   Template: $DOTFILES_DIR/git/.gitconfig.local.example${NC}"
+fi
+
 # Make sure the shell configuration is sourced
 echo -e "${BLUE}🔄 Reloading shell configuration...${NC}"
 if [[ "$SHELL" == */zsh ]]; then

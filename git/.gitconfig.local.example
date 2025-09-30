@@ -1,0 +1,20 @@
+# Local Git Configuration
+# Copy this file to ~/.gitconfig.local and customize with your actual details
+# This file is included by the main .gitconfig but not tracked in version control
+
+[user]
+	name = Your Actual Name
+	email = your.actual@email.com
+
+# Machine-specific settings
+# [core]
+# 	sshCommand = ssh -i ~/.ssh/id_custom
+
+# Work-specific settings
+# [url "git@github.com-work:"]
+# 	insteadOf = git@github.com:
+
+# Additional aliases
+# [alias]
+# 	work = config user.email "work@company.com"
+# 	personal = config user.email "personal@email.com"
