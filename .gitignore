@@ -35,3 +35,11 @@ credentials/
 env.secrets
 zshrc.local
 zshrc.work
+
+# macOS
+.DS_Store
+*/.DS_Store
+
+# Backup files
+*_backup.*
+*.backup.*
