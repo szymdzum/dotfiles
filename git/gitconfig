@@ -8,11 +8,17 @@
 	email = szymon@kumak.dev
 
 # Work identity (GitLab - Kingfisher)
-# Automatically activated for repositories in ~/Repos directory
+# Automatically activated for work repositories
+
+# Specific work repo
+[includeIf "gitdir:~/Developer/kf-ng-web/"]
+	path = ~/.gitconfig-work
+
+# Any future repos in ~/Repos directory
 [includeIf "gitdir:~/Repos/"]
 	path = ~/.gitconfig-work
 
-# Alternative: Also check for gitlab.kfplc.com in remote URL
+# Fallback: Also check for gitlab.kfplc.com in remote URL
 [includeIf "hasconfig:remote.*.url:git@gitlab.kfplc.com*/**"]
 	path = ~/.gitconfig-work
 [includeIf "hasconfig:remote.*.url:https://gitlab.kfplc.com/**"]
