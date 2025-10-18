@@ -72,6 +72,10 @@ fi
 echo -e "${BLUE}🔧 Installing Git configuration...${NC}"
 if [[ -f "$DOTFILES_DIR/git/gitconfig" ]]; then
     create_symlink "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
+    # Also symlink work config if it exists
+    if [[ -f "$DOTFILES_DIR/git/gitconfig-work" ]]; then
+        create_symlink "$DOTFILES_DIR/git/gitconfig-work" "$HOME/.gitconfig-work"
+    fi
 else
     echo -e "${YELLOW}⚠️  No git config found (skipping)${NC}"
 fi
