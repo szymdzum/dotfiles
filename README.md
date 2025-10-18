@@ -12,7 +12,8 @@ dotfiles/
 │   ├── settings.json  # Zed editor settings
 │   ├── keymap.json    # Zed editor keybindings
 │   └── tasks.json     # Zed editor tasks
-├── 🗃️  git/            # Git configuration (future)
+├── 🗃️  git/            # Git configuration (agent-optimized)
+│   └── gitconfig       # Agent-optimized git config
 ├── 📦 install.sh      # Installation script
 ├── 🔧 setup.sh        # Legacy setup script
 ├── 📘 WARP.md         # AI assistant guidance

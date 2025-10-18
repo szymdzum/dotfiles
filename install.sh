@@ -68,6 +68,14 @@ if [[ -f "$DOTFILES_DIR/gemini/settings.json" ]]; then
     create_symlink "$DOTFILES_DIR/gemini/settings.json" "$HOME/.gemini/settings.json"
 fi
 
+# Install Git configuration
+echo -e "${BLUE}🔧 Installing Git configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/git/gitconfig" ]]; then
+    create_symlink "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
+else
+    echo -e "${YELLOW}⚠️  No git config found (skipping)${NC}"
+fi
+
 # Install Ripgrep configuration
 echo -e "${BLUE}🔍 Installing Ripgrep configuration...${NC}"
 if [[ -f "$DOTFILES_DIR/ripgrep/ripgreprc" ]]; then

@@ -1,0 +1,108 @@
+# Agent-Optimized Git Configuration
+# Optimized for AI agents (Claude Code, etc.) and human developers
+# Focuses on: consistent output, minimal noise, structured formats
+
+[user]
+	name = Kumak
+	email = szymon@kumak.dev
+
+[core]
+	# Don't paginate short output (agents don't need pagination)
+	pager = less -FRX
+
+	# Use .gitignore patterns globally
+	excludesfile = ~/.gitignore_global
+
+[log]
+	# Consistent, parseable format
+	decorate = short
+
+[diff]
+	# Remove a/ b/ prefixes for cleaner output
+	noprefix = true
+
+	# Better diff algorithm (more readable, semantic diffs)
+	algorithm = histogram
+
+	# Balanced context (not too much, not too little)
+	context = 3
+
+	# Color moved lines differently
+	colorMoved = default
+
+[status]
+	# Show branch and tracking info
+	showBranch = true
+
+	# Show untracked files as individual files, not just directory
+	showUntrackedFiles = normal
+
+[branch]
+	# Auto-setup remote tracking
+	autoSetupMerge = always
+
+[push]
+	# Push current branch to upstream
+	default = current
+
+	# Automatically setup remote tracking
+	autoSetupRemote = true
+
+[pull]
+	# Rebase instead of merge on pull
+	rebase = false
+
+[fetch]
+	# Prune deleted remote branches
+	prune = true
+
+[alias]
+	# Short, structured outputs optimized for parsing
+	st = status --short --branch
+	lg = log --oneline --graph --decorate --max-count=20
+	lga = log --oneline --graph --decorate --all --max-count=20
+	changed = diff --name-status
+	files = ls-files
+	staged = diff --cached --name-only
+	unstaged = diff --name-only
+	last = log -1 HEAD --stat
+
+	# Useful for agents to check state
+	dirty = !git diff --quiet && git diff --cached --quiet && echo 'clean' || echo 'dirty'
+
+	# Branch management
+	branches = branch -vv
+
+	# Commit helpers
+	amend = commit --amend --no-edit
+
+	# Show file history
+	history = log --follow --patch --
+
+[color]
+	# Use color when appropriate (terminals support it)
+	ui = auto
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[help]
+	# Autocorrect typos after 1 second
+	autocorrect = 10
+
+[init]
+	# Use 'main' as default branch name
+	defaultBranch = main
