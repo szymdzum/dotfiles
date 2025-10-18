@@ -56,6 +56,23 @@ rg <pattern> -A 3 -B 3          # With context lines
 
 **Why:** Ripgrep config in `$RIPGREP_CONFIG_PATH` provides sensible defaults for development.
 
+### JSON Processing (jq Best Practices)
+```bash
+# Always use these flags for consistency
+jq -C .                         # Colorized output
+jq -S .                         # Sort keys (predictable)
+jq -r .                         # Raw output (no quotes)
+jq -c .                         # Compact output (one line)
+
+# Common patterns
+jq 'keys'                       # List all keys
+jq '.[] | select(.key == "value")'  # Filter objects
+jq -r '.field'                  # Extract field without quotes
+jq '. + {new: "value"}'         # Add field
+```
+
+**Why:** Consistent jq formatting makes JSON parsing more reliable for agents.
+
 ## Development Workflow
 
 ### Git Identity
@@ -75,6 +92,12 @@ Git automatically switches between identities:
 - ✅ Use `git st` instead of `git status` for concise output
 - ✅ Use `git lg` instead of `git log` for readable history
 - ✅ Use `rg` for searching (already optimized)
+
+**JSON Operations:**
+- ✅ Use `jq -C .` for colorized JSON output
+- ✅ Use `jq -S .` for sorted keys (predictable parsing)
+- ✅ Use `jq -r '.field'` for raw output without quotes
+- ✅ Prefer `jq` over manual JSON parsing
 
 **Git Operations:**
 - ✅ Check identity with `git config user.email` in work repos
