@@ -1,0 +1,78 @@
+# Ripgrep Configuration
+# Optimized for AI analysis and development workflow
+# Documentation: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+
+# Performance Optimizations
+# No max-columns limit - AI tools need full line context
+--max-depth=15
+--dfa-size-limit=1G
+
+# Smart case-insensitive search (case-insensitive unless uppercase letters are used)
+--smart-case
+
+# Search hidden files and directories (but respect .gitignore)
+--hidden
+
+# Follow symbolic links
+--follow
+
+# Default Exclusions (in addition to .gitignore)
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!.next/*
+--glob=!.nuxt/*
+--glob=!dist/*
+--glob=!build/*
+--glob=!.cache/*
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!*.map
+--glob=!package-lock.json
+--glob=!yarn.lock
+--glob=!pnpm-lock.yaml
+--glob=!*.lock
+--glob=!.DS_Store
+--glob=!.venv/*
+--glob=!venv/*
+--glob=!__pycache__/*
+--glob=!*.pyc
+--glob=!coverage/*
+--glob=!.coverage
+--glob=!.pytest_cache/*
+--glob=!.turbo/*
+--glob=!*.log
+--glob=!.idea/*
+--glob=!.vscode/*
+
+# Custom File Type Definitions for Modern Web Development
+--type-add=web:*.{html,css,scss,sass,less}
+--type-add=js:*.{js,jsx,mjs,cjs}
+--type-add=ts:*.{ts,tsx,mts,cts}
+--type-add=config:*.{json,toml,yaml,yml,ini,conf}
+--type-add=astro:*.astro
+--type-add=vue:*.vue
+--type-add=svelte:*.svelte
+--type-add=shell:*.{sh,bash,zsh,fish}
+--type-add=docker:*.{dockerfile,Dockerfile}*
+--type-add=env:*.env*
+--type-add=markdown:*.{md,mdx}
+
+# Color Configuration (optimized for dark terminals)
+--colors=path:fg:cyan
+--colors=path:style:bold
+--colors=line:fg:yellow
+--colors=match:fg:green
+--colors=match:style:bold
+
+# Display Settings
+--line-number
+--heading
+--with-filename
+
+# Performance: Use multi-threading (automatic, but explicit for clarity)
+--threads=0
+
+# Sort results by file path for consistent output
+# NOTE: Disabled for performance - sorting disables parallelism!
+# Claude Code can handle sorting programmatically when needed
+# --sort=path

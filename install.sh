@@ -68,6 +68,16 @@ if [[ -f "$DOTFILES_DIR/gemini/settings.json" ]]; then
     create_symlink "$DOTFILES_DIR/gemini/settings.json" "$HOME/.gemini/settings.json"
 fi
 
+# Install Ripgrep configuration
+echo -e "${BLUE}🔍 Installing Ripgrep configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/ripgrep/ripgreprc" ]]; then
+    # Ripgrep doesn't need a directory, just the config file referenced by env var
+    # The env var is set in shell/modules/tools.zsh
+    echo -e "${GREEN}✅ Ripgrep config will be loaded via RIPGREP_CONFIG_PATH${NC}"
+else
+    echo -e "${YELLOW}⚠️  No ripgrep config found (skipping)${NC}"
+fi
+
 # Install SSH configuration (if it exists)
 echo -e "${BLUE}🔐 Installing SSH configuration...${NC}"
 if [[ -d "$DOTFILES_DIR/.ssh" ]]; then

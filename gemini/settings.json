@@ -6,7 +6,6 @@
   },
   "model": {
     "name": "gemini-2.5-flash",
-    "maxSessionTurns": 20,
     "enableShellOutputEfficiency": true,
     "summarizeToolOutput": {
       "run_shell_command": {
@@ -42,6 +41,9 @@
     "allowed": [
       "read_file",
       "list_files",
+      "write_file",
+      "replace",
+      "google_web_search",
       "run_shell_command(git status)",
       "run_shell_command(git log)",
       "run_shell_command(git diff)"
