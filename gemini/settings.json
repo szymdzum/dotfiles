@@ -1,0 +1,77 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "model": {
+    "name": "gemini-2.5-flash",
+    "maxSessionTurns": 20,
+    "enableShellOutputEfficiency": true,
+    "summarizeToolOutput": {
+      "run_shell_command": {
+        "tokenBudget": 2000
+      }
+    },
+    "chatCompression": {
+      "contextPercentageThreshold": 0.7
+    }
+  },
+  "ui": {
+    "hideBanner": true,
+    "hideTips": true,
+    "hideContextSummary": false,
+    "showMemoryUsage": false,
+    "showLineNumbers": false,
+    "showCitations": false,
+    "useFullWidth": false,
+    "accessibility": {
+      "disableLoadingPhrases": true
+    }
+  },
+  "tools": {
+    "autoAccept": true,
+    "enableToolOutputTruncation": true,
+    "truncateToolOutputThreshold": 20000,
+    "truncateToolOutputLines": 1000,
+    "useRipgrep": true,
+    "shell": {
+      "enableInteractiveShell": true,
+      "showColor": false
+    },
+    "allowed": [
+      "read_file",
+      "list_files",
+      "run_shell_command(git status)",
+      "run_shell_command(git log)",
+      "run_shell_command(git diff)"
+    ]
+  },
+  "context": {
+    "fileName": ["GEMINI.md"],
+    "discoveryMaxDirs": 200,
+    "loadFromIncludeDirectories": false,
+    "fileFiltering": {
+      "respectGitIgnore": true,
+      "respectGeminiIgnore": true,
+      "enableRecursiveFileSearch": true,
+      "disableFuzzySearch": false
+    }
+  },
+  "general": {
+    "enablePromptCompletion": false,
+    "checkpointing": {
+      "enabled": false
+    },
+    "disableUpdateNag": true
+  },
+  "telemetry": {
+    "enabled": true,
+    "target": "local",
+    "outfile": "/Users/szymondzumak/.gemini/telemetry.log",
+    "logPrompts": false
+  },
+  "privacy": {
+    "usageStatisticsEnabled": true
+  }
+}

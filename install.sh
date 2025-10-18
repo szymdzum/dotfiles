@@ -61,6 +61,13 @@ if [[ -f "$DOTFILES_DIR/codex/config.toml" ]]; then
     create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
 fi
 
+# Install Gemini CLI configuration
+echo -e "${BLUE}💎 Installing Gemini CLI configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/gemini/settings.json" ]]; then
+    mkdir -p ~/.gemini
+    create_symlink "$DOTFILES_DIR/gemini/settings.json" "$HOME/.gemini/settings.json"
+fi
+
 # Install SSH configuration (if it exists)
 echo -e "${BLUE}🔐 Installing SSH configuration...${NC}"
 if [[ -d "$DOTFILES_DIR/.ssh" ]]; then
