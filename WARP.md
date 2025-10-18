@@ -74,6 +74,14 @@ dotfiles/
 │   ├── settings.json  # Zed editor settings
 │   ├── keymap.json    # Zed editor keybindings
 │   └── tasks.json     # Zed editor tasks
+├── claude/            # Claude Code CLI configuration
+│   └── settings.json  # Status line, thinking mode, MCP servers
+├── codex/             # Codex CLI configuration
+│   └── config.toml    # Codex settings
+├── gemini/            # Gemini CLI configuration
+│   └── settings.json  # Gemini settings
+├── ripgrep/           # Ripgrep configuration
+│   └── ripgreprc      # Ripgrep settings
 ├── git/               # Git configuration (placeholder)
 ├── install.sh         # Modern installation script with backups
 ├── setup.sh           # Legacy setup script  
@@ -100,12 +108,19 @@ dotfiles/
 - **Node**: NVM with lazy loading for faster shell startup
 - **Package managers**: PNPM, Yarn support
 - **Editor**: Zed-first workflow (per user preference)
+- **AI CLI Tools**: Claude Code CLI, Codex, Gemini CLI configurations versioned
 
 ### Zed Editor Configuration
 - **Performance-focused**: Manual save/format workflow, no auto-save
 - **TypeScript/Deno**: Configured for Deno LSP with inlay hints
 - **UI**: Comfortable spacing, file icons, Git status integration
 - **Project-aware**: Restoration of last session, auto-reveal entries
+
+### Claude Code CLI Configuration
+- **Custom status line**: Shows user@host, current directory, git branch, model, and token usage
+- **MCP context servers**: Astro docs server pre-configured
+- **Thinking mode**: Disabled by default (alwaysThinkingEnabled: false)
+- **Runtime data excluded**: Only `settings.json` versioned; `~/.claude.json` and runtime files (history, projects, todos) are git-ignored
 
 ### Custom Functions & Aliases
 - **Smart navigation**: `work <project>` searches Developer/ and Repos/ directories

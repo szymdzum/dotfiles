@@ -32,6 +32,7 @@ The `dotfiles` project utilizes a **symlink-based configuration system**. Config
     *   `config.toml`: Codex CLI configuration, defining model behavior, shell environment policy, and sandbox permissions.
 *   `docs/`: Documentation files.
     *   `SECRETS.md`: A comprehensive guide to secret management within this dotfiles setup.
+    *   `gemini/`: Contains fetched documentation for the Gemini CLI (extensions, configuration, etc.).
 *   `CLAUDE.md`: Guidance and context for the Claude Code AI assistant.
 *   `WARP.md`: Guidance and context for the WARP terminal.
 

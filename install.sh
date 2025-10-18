@@ -78,6 +78,13 @@ else
     echo -e "${YELLOW}⚠️  No ripgrep config found (skipping)${NC}"
 fi
 
+# Install Claude Code CLI configuration
+echo -e "${BLUE}🤖 Installing Claude Code CLI configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/claude/settings.json" ]]; then
+    mkdir -p ~/.claude
+    create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+fi
+
 # Install SSH configuration (if it exists)
 echo -e "${BLUE}🔐 Installing SSH configuration...${NC}"
 if [[ -d "$DOTFILES_DIR/.ssh" ]]; then
