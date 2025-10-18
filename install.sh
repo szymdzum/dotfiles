@@ -80,6 +80,15 @@ else
     echo -e "${YELLOW}⚠️  No git config found (skipping)${NC}"
 fi
 
+# Install Bat configuration
+echo -e "${BLUE}🦇 Installing Bat configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/bat/config" ]]; then
+    mkdir -p ~/.config/bat
+    create_symlink "$DOTFILES_DIR/bat/config" "$HOME/.config/bat/config"
+else
+    echo -e "${YELLOW}⚠️  No bat config found (skipping)${NC}"
+fi
+
 # Install Ripgrep configuration
 echo -e "${BLUE}🔍 Installing Ripgrep configuration...${NC}"
 if [[ -f "$DOTFILES_DIR/ripgrep/ripgreprc" ]]; then

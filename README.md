@@ -14,6 +14,10 @@ dotfiles/
 │   └── tasks.json     # Zed editor tasks
 ├── 🗃️  git/            # Git configuration (agent-optimized)
 │   └── gitconfig       # Agent-optimized git config
+├── 🦇 bat/            # Bat configuration (agent-optimized)
+│   └── config          # Bat syntax highlighting config
+├── 🔍 ripgrep/        # Ripgrep configuration (agent-optimized)
+│   └── ripgreprc       # Ripgrep search config
 ├── 📦 install.sh      # Installation script
 ├── 🔧 setup.sh        # Legacy setup script
 ├── 📘 WARP.md         # AI assistant guidance

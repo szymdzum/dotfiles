@@ -1,0 +1,38 @@
+# Bat Configuration
+# Optimized for AI agents (Claude Code, etc.) and human developers
+# Documentation: https://github.com/sharkdp/bat
+
+# Theme optimized for dark terminals and AI context
+--theme="base16"
+
+# Show line numbers and grid for context
+--style="numbers,grid"
+
+# CRITICAL: No pagination for agents
+# Agents need full output, not interactive paging
+--paging=never
+
+# Don't wrap lines (preserve code structure)
+--wrap=never
+
+# Tab width (standard 2 spaces)
+--tabs=2
+
+# File type mappings for better syntax highlighting
+--map-syntax="*.conf:INI"
+--map-syntax=".gitignore:Git Ignore"
+--map-syntax="*.env:Bash"
+--map-syntax="*.env.*:Bash"
+--map-syntax=".env.*:Bash"
+--map-syntax="*.prisma:Rust"
+--map-syntax="Dockerfile*:Dockerfile"
+--map-syntax="*.dockerfile:Dockerfile"
+--map-syntax="docker-compose*.yml:YAML"
+--map-syntax="docker-compose*.yaml:YAML"
+--map-syntax="*.astro:TypeScript"
+--map-syntax="*.mdx:Markdown"
+--map-syntax="*.toml:TOML"
+--map-syntax="*.lock:JSON"
+--map-syntax="*.zshrc:Bash"
+--map-syntax="*.bashrc:Bash"
+--map-syntax="ripgreprc:Bash"
