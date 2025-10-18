@@ -99,6 +99,44 @@ else
     echo -e "${YELLOW}⚠️  No ripgrep config found (skipping)${NC}"
 fi
 
+# Install GitHub CLI configuration
+echo -e "${BLUE}🐙 Installing GitHub CLI configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/gh/config.yml" ]]; then
+    mkdir -p ~/.config/gh
+    create_symlink "$DOTFILES_DIR/gh/config.yml" "$HOME/.config/gh/config.yml"
+
+    # Create reverse symlink for hosts.yml (tokens) if it exists in dotfiles
+    if [[ -f "$DOTFILES_DIR/gh/hosts.yml" ]]; then
+        create_symlink "$DOTFILES_DIR/gh/hosts.yml" "$HOME/.config/gh/hosts.yml"
+        echo -e "${GREEN}✅ GitHub CLI config and hosts linked from dotfiles${NC}"
+    else
+        echo -e "${GREEN}✅ GitHub CLI config linked (hosts.yml stays in ~/.config/gh/)${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️  No gh config found (skipping)${NC}"
+fi
+
+# Install GitLab CLI configuration
+echo -e "${BLUE}🦊 Installing GitLab CLI configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/glab/aliases.yml" ]]; then
+    mkdir -p ~/.config/glab-cli
+    create_symlink "$DOTFILES_DIR/glab/aliases.yml" "$HOME/.config/glab-cli/aliases.yml"
+
+    # Create reverse symlink for config.yml (with tokens) if it exists in dotfiles
+    if [[ -f "$DOTFILES_DIR/glab/config.yml" ]]; then
+        create_symlink "$DOTFILES_DIR/glab/config.yml" "$HOME/.config/glab-cli/config.yml"
+        echo -e "${GREEN}✅ GitLab CLI aliases and config linked from dotfiles${NC}"
+    elif [[ -f "$DOTFILES_DIR/glab/config.template.yml" ]] && [[ ! -f "$HOME/.config/glab-cli/config.yml" ]]; then
+        # If no config.yml in dotfiles but template exists, copy template
+        cp "$DOTFILES_DIR/glab/config.template.yml" "$HOME/.config/glab-cli/config.yml"
+        echo -e "${YELLOW}📝 Created config.yml from template (add your tokens there)${NC}"
+    else
+        echo -e "${GREEN}✅ GitLab CLI aliases linked (config.yml stays in ~/.config/glab-cli/)${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️  No glab config found (skipping)${NC}"
+fi
+
 # Install Claude Code CLI configuration
 echo -e "${BLUE}🤖 Installing Claude Code CLI configuration...${NC}"
 mkdir -p ~/.claude

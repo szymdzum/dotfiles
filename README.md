@@ -18,6 +18,13 @@ dotfiles/
 ├── 🗃️  git/            # Git configuration (agent-optimized)
 │   ├── gitconfig       # Agent-optimized git config
 │   └── gitconfig-work  # Work identity config
+├── 🐙 gh/             # GitHub CLI configuration (agent-optimized)
+│   ├── config.yml     # gh aliases and settings
+│   └── README.md      # Setup guide (hosts.yml stays local)
+├── 🦊 glab/           # GitLab CLI configuration (agent-optimized)
+│   ├── aliases.yml    # glab aliases
+│   ├── config.yml     # Template config (tokens stay local)
+│   └── README.md      # Setup guide
 ├── 📦 install.sh      # Installation script
 ├── 🔧 setup.sh        # Legacy setup script
 ├── 📘 WARP.md         # AI assistant guidance
@@ -62,6 +69,16 @@ ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
 - ⚙️ **Optimized settings** for development (zed/settings.json)
 - 🎨 **Custom key bindings** (zed/keymap.json)
 - 📝 **Development tasks** (zed/tasks.json)
+
+### CLI Tools (Agent-Optimized)
+- 🐙 **GitHub CLI (`gh`)** - Custom aliases for compact, parseable output
+  - `gh prs`, `gh myprs`, `gh myissues`, `gh checks` - Tab-separated data
+  - Uses `--json` and `--template` for structured output
+- 🦊 **GitLab CLI (`glab`)** - Consistent pagination and filters
+  - `glab mrs`, `glab mymrs`, `glab myissues`, `glab pipes`
+  - 20-item pagination reduces API calls
+- 🦇 **Bat** - Syntax-highlighted file reading (no pagination for agents)
+- 🔍 **Ripgrep** - Smart search with auto-exclusions and custom file types
 
 ## 🔄 Updating
 

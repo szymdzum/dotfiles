@@ -35,6 +35,26 @@ rg <pattern>        # Smart search with optimized settings
                     # - Custom file types (astro, vue, svelte, etc.)
 ```
 
+### GitHub CLI (gh aliases)
+```bash
+gh prs              # List PRs (compact, tab-separated)
+gh prv [number]     # View PR details (compact format)
+gh myprs            # List my PRs only
+gh myissues         # List my issues only
+gh checks [number]  # Show PR checks status
+gh co [number]      # Checkout PR locally
+```
+
+### GitLab CLI (glab aliases)
+```bash
+glab mrs            # List MRs (20 per page)
+glab mrv [number]   # View MR details
+glab mymrs          # List my MRs only
+glab myissues       # List my issues only
+glab pipes          # View pipeline status
+glab co [number]    # Checkout MR locally
+```
+
 ### Git Identity (Auto-Switching)
 - **Personal (GitHub):** Used in `~/Developer/dotfiles` and most repos
 - **Work (GitLab):** Used in `~/Developer/kf-ng-web` and `~/Repos/*`

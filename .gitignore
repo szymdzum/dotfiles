@@ -42,3 +42,12 @@ gemini/settings.local.json
 gemini/oauth_creds.json
 gemini/google_accounts.json
 gemini/installation_id
+
+# GitHub CLI secrets (kept in dotfiles but not tracked)
+gh/hosts.yml
+# gh/config.yml IS tracked (contains aliases, no secrets)
+
+# GitLab CLI secrets (kept in dotfiles but not tracked)
+glab/config.yml
+# glab/aliases.yml IS tracked (contains aliases only)
+# glab/config.template.yml IS tracked (template without secrets)

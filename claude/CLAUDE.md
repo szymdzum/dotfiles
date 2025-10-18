@@ -73,6 +73,41 @@ jq '. + {new: "value"}'         # Add field
 
 **Why:** Consistent jq formatting makes JSON parsing more reliable for agents.
 
+### GitHub CLI (gh aliases)
+```bash
+# Pull Requests
+gh prs              # List PRs (compact, tab-separated)
+gh prv [number]     # View PR details (compact format)
+gh myprs            # List my PRs only
+gh checks [number]  # Show PR checks status
+gh co [number]      # Checkout PR locally
+
+# Issues
+gh issues           # List issues (compact, tab-separated)
+gh myissues         # List my issues only
+```
+
+**Why:** Custom aliases use `--json` and `--template` to provide structured, parseable output instead of formatted tables.
+
+### GitLab CLI (glab aliases)
+```bash
+# Merge Requests
+glab mrs            # List MRs (20 per page)
+glab mrv [number]   # View MR details
+glab mymrs          # List my MRs only
+glab co [number]    # Checkout MR locally
+
+# Issues
+glab issues         # List issues (20 per page)
+glab myissues       # List my issues only
+
+# Pipelines
+glab pipes          # View pipeline status
+glab ci             # Alias for pipeline ci
+```
+
+**Why:** Consistent pagination (20 items) and common filters reduce API calls and provide predictable output.
+
 ## Development Workflow
 
 ### Git Identity
@@ -104,6 +139,12 @@ Git automatically switches between identities:
 - ✅ Use `git dirty` to quickly check repo state
 - ✅ Use `git changed HEAD~3` to see what changed in last 3 commits
 
+**GitHub/GitLab Operations:**
+- ✅ Use `gh prs` / `glab mrs` for compact PR/MR lists
+- ✅ Use `gh myissues` / `glab myissues` to filter by assignee
+- ✅ Use `gh checks` to verify CI status before merging
+- ✅ GitHub aliases provide tab-separated output for easy parsing
+
 ## Tool Locations
 
 All optimized configurations are in `~/Developer/dotfiles/`:
@@ -111,6 +152,8 @@ All optimized configurations are in `~/Developer/dotfiles/`:
 - **Shell:** `shell/.zshrc` and `shell/modules/`
   - **Bat:** `shell/bat/config`
   - **Ripgrep:** `shell/ripgrep/ripgreprc`
+- **GitHub CLI:** `~/.config/gh/config.yml` (aliases stored here)
+- **GitLab CLI:** `~/.config/glab-cli/config.yml` (aliases stored here)
 
 ## Quick Reference
 

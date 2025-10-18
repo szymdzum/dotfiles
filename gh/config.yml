@@ -1,0 +1,32 @@
+# The current version of the config schema
+version: 1
+# What protocol to use when performing git operations. Supported values: ssh, https
+git_protocol: https
+# What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
+editor:
+# When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
+prompt: enabled
+# Preference for editor-based interactive prompting. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
+prefer_editor_prompt: disabled
+# A pager program to send command output to, e.g. "less". If blank, will refer to environment. Set the value to "cat" to disable the pager.
+pager:
+# Aliases allow you to create nicknames for gh commands
+aliases:
+    co: pr checkout
+    prs: "pr list --limit 20 --json number,title,state,author,updatedAt,url --template '{{range .}}{{.number}}\t{{.state}}\t{{.title}}\t{{.author.login}}\t{{.updatedAt}}{{\"\\n\"}}{{end}}'"
+    prv: |-
+        pr view --json number,title,state,author,body,url,commits --template 'PR #{{.number}}: {{.title}}
+        State: {{.state}}
+        Author: {{.author.login}}
+        URL: {{.url}}
+
+        {{.body}}
+        '
+    issues: "issue list --limit 20 --json number,title,state,author,updatedAt --template '{{range .}}{{.number}}\t{{.state}}\t{{.title}}\t{{.author.login}}{{\"\\n\"}}{{end}}'"
+    myissues: "issue list --assignee @me --limit 20 --json number,title,state,updatedAt --template '{{range .}}{{.number}}\t{{.state}}\t{{.title}}{{\"\\n\"}}{{end}}'"
+    myprs: "pr list --author @me --limit 20 --json number,title,state,updatedAt --template '{{range .}}{{.number}}\t{{.state}}\t{{.title}}{{\"\\n\"}}{{end}}'"
+    checks: "pr checks --json name,state,conclusion --template '{{range .}}{{.name}}\t{{.state}}\t{{.conclusion}}{{\"\\n\"}}{{end}}'"
+# The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
+http_unix_socket:
+# What web browser gh should use when opening URLs. If blank, will refer to environment.
+browser:
