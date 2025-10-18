@@ -2,6 +2,44 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Agent-Optimized Tools
+
+**IMPORTANT:** This dotfiles repo includes optimized configurations for AI agent workflows. Use these tools and shortcuts for efficient operations:
+
+### Git Aliases (Always Available)
+```bash
+git st              # Short status with branch info
+git lg              # Pretty log graph (last 20 commits)
+git lga             # Pretty log graph (all branches)
+git changed [ref]   # Show changed files since ref
+git staged          # List staged files
+git unstaged        # List unstaged files
+git dirty           # Check if repo is clean or dirty
+git last            # Show last commit with stats
+```
+
+### File Reading (Use bat instead of cat)
+```bash
+bat <file>          # Syntax-highlighted file reading
+                    # - No pagination (optimized for agents)
+                    # - Line numbers enabled
+                    # - Better file type detection
+```
+
+### Search (ripgrep already optimized)
+```bash
+rg <pattern>        # Smart search with optimized settings
+                    # - Excludes: node_modules, .git, dist, build
+                    # - Searches hidden files
+                    # - Smart case sensitivity
+                    # - Custom file types (astro, vue, svelte, etc.)
+```
+
+### Git Identity (Auto-Switching)
+- **Personal (GitHub):** Used in `~/Developer/dotfiles` and most repos
+- **Work (GitLab):** Used in `~/Developer/kf-ng-web` and `~/Repos/*`
+- Identity switches automatically based on repo location/remote
+
 ## Essential Commands
 
 ### Installation & Setup
