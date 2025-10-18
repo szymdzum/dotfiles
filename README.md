@@ -6,18 +6,18 @@ My personal development environment configuration files.
 
 ```
 dotfiles/
-├── 🐚 shell/          # Shell configuration
-│   └── .zshrc         # Zsh configuration with modern aliases
+├── 🐚 shell/          # Shell configuration (agent-optimized)
+│   ├── .zshrc         # Zsh configuration with modern aliases
+│   ├── modules/       # Modular shell configs
+│   ├── bat/           # Bat syntax highlighting config
+│   └── ripgrep/       # Ripgrep search config
 ├── ✏️  zed/            # Zed editor configuration
 │   ├── settings.json  # Zed editor settings
 │   ├── keymap.json    # Zed editor keybindings
 │   └── tasks.json     # Zed editor tasks
 ├── 🗃️  git/            # Git configuration (agent-optimized)
-│   └── gitconfig       # Agent-optimized git config
-├── 🦇 bat/            # Bat configuration (agent-optimized)
-│   └── config          # Bat syntax highlighting config
-├── 🔍 ripgrep/        # Ripgrep configuration (agent-optimized)
-│   └── ripgreprc       # Ripgrep search config
+│   ├── gitconfig       # Agent-optimized git config
+│   └── gitconfig-work  # Work identity config
 ├── 📦 install.sh      # Installation script
 ├── 🔧 setup.sh        # Legacy setup script
 ├── 📘 WARP.md         # AI assistant guidance

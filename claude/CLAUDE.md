@@ -85,9 +85,9 @@ Git automatically switches between identities:
 
 All optimized configurations are in `~/Developer/dotfiles/`:
 - **Git:** `git/gitconfig`, `git/gitconfig-work`
-- **Bat:** `bat/config`
-- **Ripgrep:** `ripgrep/ripgreprc`
 - **Shell:** `shell/.zshrc` and `shell/modules/`
+  - **Bat:** `shell/bat/config`
+  - **Ripgrep:** `shell/ripgrep/ripgreprc`
 
 ## Quick Reference
 

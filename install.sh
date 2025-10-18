@@ -82,16 +82,16 @@ fi
 
 # Install Bat configuration
 echo -e "${BLUE}🦇 Installing Bat configuration...${NC}"
-if [[ -f "$DOTFILES_DIR/bat/config" ]]; then
+if [[ -f "$DOTFILES_DIR/shell/bat/config" ]]; then
     mkdir -p ~/.config/bat
-    create_symlink "$DOTFILES_DIR/bat/config" "$HOME/.config/bat/config"
+    create_symlink "$DOTFILES_DIR/shell/bat/config" "$HOME/.config/bat/config"
 else
     echo -e "${YELLOW}⚠️  No bat config found (skipping)${NC}"
 fi
 
 # Install Ripgrep configuration
 echo -e "${BLUE}🔍 Installing Ripgrep configuration...${NC}"
-if [[ -f "$DOTFILES_DIR/ripgrep/ripgreprc" ]]; then
+if [[ -f "$DOTFILES_DIR/shell/ripgrep/ripgreprc" ]]; then
     # Ripgrep doesn't need a directory, just the config file referenced by env var
     # The env var is set in shell/modules/tools.zsh
     echo -e "${GREEN}✅ Ripgrep config will be loaded via RIPGREP_CONFIG_PATH${NC}"

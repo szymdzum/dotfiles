@@ -42,11 +42,3 @@ gemini/settings.local.json
 gemini/oauth_creds.json
 gemini/google_accounts.json
 gemini/installation_id
-
-# Claude Code CLI: only track settings.json
-claude/**
-!claude/settings.json
-# Convenience symlink (not tracked)
-claude.settings
-# Prevent accidental addition of local runtime/state files
-.claude.json

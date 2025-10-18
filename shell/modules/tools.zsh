@@ -2,7 +2,7 @@
 # Development tool configurations with optimized loading
 
 # === Ripgrep Configuration ===
-export RIPGREP_CONFIG_PATH="$DOTFILES_DIR/ripgrep/ripgreprc"
+export RIPGREP_CONFIG_PATH="$DOTFILES_DIR/shell/ripgrep/ripgreprc"
 
 # === NVM (Node Version Manager) - Lazy Loading ===
 export NVM_DIR="$HOME/.nvm"
