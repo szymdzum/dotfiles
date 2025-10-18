@@ -13,6 +13,9 @@ nvm() {
   nvm "$@"
 }
 
+# Auto-load default Node version
+[ -s "$NVM_DIR/nvm.sh" ] && nvm use default --silent 2>/dev/null
+
 # === PyEnv (Python Version Manager) - Lazy Loading ===
 # Check if pyenv is installed before configuring
 if command -v pyenv &> /dev/null; then

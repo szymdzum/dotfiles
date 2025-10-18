@@ -1,4 +1,7 @@
 {
+  "active_pane_modifiers": {
+    "inactive_opacity": 1.0
+  },
   "edit_predictions": {
     "mode": "eager",
     "copilot": {
@@ -14,7 +17,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "icon_theme": "Seti Icon Theme",
+  "icon_theme": "Light Charmed Icons",
   "buffer_font_family": "Menlo",
   "ui_font_size": 18,
   "buffer_font_size": 17,
@@ -26,7 +29,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Monospace dark"
+    "dark": "VSCode Dark Polished"
   },
   "file_finder": {
     "modal_max_width":"small"
@@ -36,6 +39,9 @@
     "show": true,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": true
+  },
+  "title_bar": {
+    "show_branch_icon": true
   },
   "tabs": {
     "close_position": "right",
@@ -74,6 +80,12 @@
   "close_on_file_delete": false,
   "cursor_blink": true,
   "relative_line_numbers": false,
+  "gutter": {
+    "line_numbers": true,
+    "code_actions": true,
+    "runnables": true,
+    "folds": true
+  },
 
   "tab_size": 2,
   "indent_guides": {
@@ -95,17 +107,15 @@
 
   "file_types": {
     "Astro": ["astro"],
-    "TypeScript": ["ts", "tsx"],
+    "TypeScript": ["ts"],
+    "TSX": ["tsx"],
     "JavaScript": ["js", "jsx", "mjs"],
     "JSON": ["json", "jsonc"],
     "Markdown": ["md", "mdx"]
   },
 
   "inlay_hints": {
-    "enabled": true,
-    "show_type_hints": true,
-    "show_parameter_hints": true,
-    "show_other_hints": true
+    "enabled": false
   },
 
   "lsp": {
@@ -126,53 +136,25 @@
   },
   "languages": {
     "TypeScript": {
+      "language_servers": ["vtsls", "!deno"],
       "tab_size": 2,
-      "format_on_save": "off",
-      "formatter": "language_server",
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.removeUnusedImports": true,
-        "source.addMissingImports": true
-      },
-      "inlay_hints": {
-        "enabled": true,
-        "show_parameter_hints": true,
-        "show_type_hints": true
-      },
-      "language_servers": ["deno", "!typescript-language-server", "!vtsls"]
+      "format_on_save": "off"
     },
 
     "TSX": {
+      "language_servers": ["vtsls", "!deno"],
       "tab_size": 2,
-      "format_on_save": "off",
-      "formatter": "language_server",
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.removeUnusedImports": true,
-        "source.addMissingImports": true
-      },
-      "inlay_hints": {
-        "enabled": true,
-        "show_parameter_hints": true,
-        "show_type_hints": true
-      },
-      "language_servers": ["deno", "!typescript-language-server", "!vtsls"]
+      "format_on_save": "off"
     },
 
     "JavaScript": {
+      "language_servers": ["vtsls", "!deno"],
       "tab_size": 2,
-      "format_on_save": "off",
-      "formatter": "language_server",
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.removeUnusedImports": true
-      },
-      "language_servers": [
-        "deno",
-        "!typescript-language-server",
-        "!vtsls",
-        "!eslint"
-      ]
+      "format_on_save": "off"
+    },
+
+    "CSS": {
+      "language_servers": ["!tailwindcss-language-server"]
     },
 
     "Astro": {
@@ -182,6 +164,7 @@
     },
 
     "JSON": {
+      "language_servers": ["json-language-server"],
       "tab_size": 2,
       "format_on_save": "off",
       "formatter": "prettier"
@@ -228,7 +211,9 @@
             "activate_script": "default"
           }
         },
-        "env": {},
+        "env": {
+          "PATH": "/Users/szymondzumak/.nvm/versions/node/v22.20.0/bin:$PATH"
+        },
         "font_family": null,
         "font_features": null,
         "font_size": null,
