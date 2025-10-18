@@ -101,9 +101,14 @@ fi
 
 # Install Claude Code CLI configuration
 echo -e "${BLUE}🤖 Installing Claude Code CLI configuration...${NC}"
+mkdir -p ~/.claude
 if [[ -f "$DOTFILES_DIR/claude/settings.json" ]]; then
-    mkdir -p ~/.claude
     create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+fi
+# Install global CLAUDE.md (user-level memory for all projects)
+if [[ -f "$DOTFILES_DIR/claude/CLAUDE.md" ]]; then
+    create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+    echo -e "${GREEN}✅ Global CLAUDE.md installed (applies to all projects)${NC}"
 fi
 
 # Install SSH configuration (if it exists)
