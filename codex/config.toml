@@ -1,0 +1,64 @@
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+
+# Note: Project-specific trust levels should be configured in ~/.codex/config.local.toml
+# Example:
+# [projects."/path/to/your/project"]
+# trust_level = "trusted"
+
+# Enable web search by default
+search = true
+
+# Allow full command execution in workspace
+[shell_environment_policy]
+inherit = "all"  # Inherit all environment variables (includes PATH with glab, gh, etc.)
+
+# Reduce friction for CLI tool usage
+approval_policy = "on-failure"  # Only ask for approval if commands fail
+sandbox_mode = "workspace-write"  # Allow write access to workspace
+
+# Editor integration (Zed)
+file_opener = "none"  # Set to "vscode", "cursor", etc. if you want Codex to open files
+
+# Enhanced model behavior
+model_verbosity = "concise"  # More focused responses
+model_reasoning_summary = true  # Show reasoning summaries
+
+# Network access for sandbox (useful for API testing, downloads)
+[sandbox_permissions]
+network_access = true
+
+# MCP Servers - extend Codex with external tools
+# Uncomment and configure as needed:
+
+# [mcp_servers.filesystem]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allow"]
+# enabled = true
+
+# [mcp_servers.github]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-github"]
+# env = { GITHUB_PERSONAL_ACCESS_TOKEN = "ghp_your_token" }
+# enabled = true
+
+# [mcp_servers.gitlab]
+# command = "npx" 
+# args = ["-y", "@modelcontextprotocol/server-gitlab"]
+# env = { GITLAB_PERSONAL_ACCESS_TOKEN = "your_token" }
+# enabled = true
+
+# [mcp_servers.fetch]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-fetch"]
+# enabled = true  # Allows Codex to fetch web pages/APIs
+
+# [mcp_servers.brave-search]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-brave-search"]
+# env = { BRAVE_API_KEY = "your_key" }
+# enabled = true  # Enhanced web search via Brave
+
+# History settings
+[history]
+persistence = "save-all"  # Save all sessions for resume

@@ -21,7 +21,7 @@ echo -e "${BLUE}🏠 Installing dotfiles from: ${DOTFILES_DIR}${NC}"
 create_symlink() {
     local source="$1"
     local target="$2"
-    
+
     if [[ -L "$target" ]]; then
         echo -e "${YELLOW}⚠️  Removing existing symlink: $target${NC}"
         rm "$target"
@@ -29,7 +29,7 @@ create_symlink() {
         echo -e "${YELLOW}📦 Backing up existing file: $target${NC}"
         mv "$target" "${target}.backup.$(date +%Y%m%d_%H%M%S)"
     fi
-    
+
     ln -s "$source" "$target"
     echo -e "${GREEN}✅ Linked: $target -> $source${NC}"
 }
@@ -46,12 +46,43 @@ create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
 echo -e "${BLUE}✏️  Installing Zed configuration...${NC}"
 if [[ -d "$DOTFILES_DIR/zed" ]]; then
     mkdir -p ~/.config/zed
-    for file in "$DOTFILES_DIR/zed"/*; do
-        if [[ -f "$file" ]]; then
-            filename=$(basename "$file")
-            create_symlink "$file" "$HOME/.config/zed/$filename"
+    # Only symlink specific config files, not backups
+    for file in settings.json keymap.json tasks.json; do
+        if [[ -f "$DOTFILES_DIR/zed/$file" ]]; then
+            create_symlink "$DOTFILES_DIR/zed/$file" "$HOME/.config/zed/$file"
         fi
     done
+fi
+
+# Install Codex configuration
+echo -e "${BLUE}🤖 Installing Codex configuration...${NC}"
+if [[ -f "$DOTFILES_DIR/codex/config.toml" ]]; then
+    mkdir -p ~/.codex
+    create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
+fi
+
+# Install SSH configuration (if it exists)
+echo -e "${BLUE}🔐 Installing SSH configuration...${NC}"
+if [[ -d "$DOTFILES_DIR/.ssh" ]]; then
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+
+    # Symlink SSH config if it exists
+    if [[ -f "$DOTFILES_DIR/.ssh/config" ]]; then
+        create_symlink "$DOTFILES_DIR/.ssh/config" "$HOME/.ssh/config"
+        chmod 600 "$HOME/.ssh/config"
+        echo -e "${GREEN}✅ SSH config installed${NC}"
+    fi
+
+    # Copy public keys (don't symlink for security)
+    if ls "$DOTFILES_DIR/.ssh/"*.pub >/dev/null 2>&1; then
+        echo -e "${BLUE}📋 Copying SSH public keys...${NC}"
+        cp "$DOTFILES_DIR/.ssh/"*.pub "$HOME/.ssh/"
+        chmod 644 "$HOME/.ssh/"*.pub
+        echo -e "${GREEN}✅ SSH public keys copied${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️  No .ssh directory found in dotfiles (skipping)${NC}"
 fi
 
 # Make sure the shell configuration is sourced

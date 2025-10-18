@@ -35,3 +35,4 @@ credentials/
 env.secrets
 zshrc.local
 zshrc.work
+codex/config.local.toml

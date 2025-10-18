@@ -8,7 +8,6 @@
     "reveal": "always",
     "reveal_target": "dock",
     "hide": "never",
-    "shell": "system",
-    "tags": []
+    "shell": "system"
   }
 ]

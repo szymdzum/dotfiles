@@ -52,5 +52,6 @@ export LS_COLORS="*.astro=95:*.ts=93:*.js=93:*.json=93:*.md=96:*.css=92:*.scss=9
 # Claude Code optimizations
 export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1  # Stay in project root, don't wander
 export USE_BUILTIN_RIPGREP=0                       # Use system ripgrep (it's faster)
-export BASH_DEFAULT_TIMEOUT_MS=30000              # Reasonable timeout for macOS
-export DISABLE_TELEMETRY=1                        # What happens on your Mac, stays on your Mac
+export BASH_DEFAULT_TIMEOUT_MS=30000               # Reasonable timeout for macOS (default: 30000)
+export DISABLE_TELEMETRY=1                         # Opt out of Statsig telemetry
+export DISABLE_ERROR_REPORTING=1                   # Disable Sentry error reporting for privacy
