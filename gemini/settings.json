@@ -50,7 +50,7 @@
     ]
   },
   "context": {
-    "fileName": ["GEMINI.md"],
+    "fileName": ["AGENTS.md", ".claude/CLAUDE.md"],
     "discoveryMaxDirs": 200,
     "loadFromIncludeDirectories": false,
     "fileFiltering": {

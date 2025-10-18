@@ -26,9 +26,8 @@ dotfiles/
 │   ├── config.yml     # Template config (tokens stay local)
 │   └── README.md      # Setup guide
 ├── 📦 install.sh      # Installation script
-├── 🔧 setup.sh        # Legacy setup script
-├── 📘 WARP.md         # AI assistant guidance
-├── 🔒 SECRETS.md      # Secret management guide
+├── 📘 AGENTS.md       # AI assistant guidance (universal standard)
+├── 📘 CLAUDE.md       # Claude Code specific guidance
 └── 📖 README.md       # This file
 ```
 
@@ -51,7 +50,7 @@ If you prefer to install components individually:
 # Shell configuration
 ln -sf ~/Developer/dotfiles/shell/.zshrc ~/.zshrc
 ln -sf ~/Developer/dotfiles/zed/* ~/.config/zed/
-# Zed editor configuration  
+# Zed editor configuration
 mkdir -p ~/.config/zed
 ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
 ```
@@ -83,7 +82,7 @@ ln -sf ~/Developer/.dotfiles/zed/* ~/.config/zed/
 ## 🔄 Updating
 
 ```bash
-cd ~/Developer/.dotfiles
+cd ~/Developer/dotfiles
 git pull
 ./install.sh  # Re-run to update symlinks
 ```
@@ -93,7 +92,7 @@ git pull
 The terminal uses a custom color scheme for better file recognition:
 - 🟣 **Purple** - `.astro` files (Astro components)
 - 🟡 **Yellow** - `.ts`, `.js`, `.json` (code files)
-- 🟢 **Green** - `.css`, `.scss` (styling files)  
+- 🟢 **Green** - `.css`, `.scss` (styling files)
 - 🔵 **Blue** - Directories and `.html` files
 - 🟦 **Cyan** - `.md` files (documentation)
 

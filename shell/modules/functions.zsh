@@ -21,7 +21,7 @@ search() {
   fi
 }
 
-# Smart git commit with branch info
+# Quick git add + commit with branch context display
 commit() {
   if [ -z "$1" ]; then
     echo "Usage: commit <message>"

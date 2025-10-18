@@ -5,4 +5,3 @@ mrv: mr view
 mymrs: mr list --author @me --per-page 20
 issues: issue list --per-page 20
 myissues: issue list --assignee @me --per-page 20
-pipes: pipeline ci

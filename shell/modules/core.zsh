@@ -30,14 +30,19 @@ setopt SHARE_HISTORY
 
 # PATH construction - Organized by priority
 # Only include existing directories to avoid PATH pollution
-path=(
+typeset -U path  # Ensure unique entries in path array
+local -a candidate_paths=(
   $HOME/.local/bin
   $HOME/.deno/bin
   $HOME/.cargo/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
-  $path
 )
+
+# Add only directories that exist
+for dir in $candidate_paths; do
+  [[ -d "$dir" ]] && path=($dir $path)
+done
 export PATH
 
 # Color support - Force terminal to show colors
