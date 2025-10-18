@@ -1,5 +1,5 @@
 model = "gpt-5-codex"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 
 # Note: Project-specific trust levels should be configured in ~/.codex/config.local.toml
 # Example:
@@ -43,7 +43,7 @@ network_access = true
 # enabled = true
 
 # [mcp_servers.gitlab]
-# command = "npx" 
+# command = "npx"
 # args = ["-y", "@modelcontextprotocol/server-gitlab"]
 # env = { GITLAB_PERSONAL_ACCESS_TOKEN = "your_token" }
 # enabled = true
