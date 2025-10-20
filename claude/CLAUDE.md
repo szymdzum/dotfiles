@@ -41,20 +41,35 @@ bat <file> | head   # With piping
 
 **Why:** Bat adds syntax highlighting that improves code understanding without extra API calls.
 
-### Searching (Ripgrep is Optimized)
+### Searching (Always Use Bash + rg)
 ```bash
 rg <pattern>                    # Smart search
 rg <pattern> --type js          # Search only JS files
 rg <pattern> -A 3 -B 3          # With context lines
+rg <pattern> -l                 # List matching files only
+rg <pattern> -c                 # Count matches per file
 ```
 
-**Optimizations:**
+**IMPORTANT: Always prefer Bash + rg over Claude's built-in Grep tool**
+
+**Why:**
+- Uses system ripgrep 15.0.0 (newer than bundled 14.1.1)
+- Respects custom `RIPGREP_CONFIG_PATH` configuration
+- Consistent behavior with terminal usage
+- Full control over exclusions and search behavior
+
+**Optimizations (auto-applied via config):**
 - Auto-excludes: `node_modules`, `.git`, `dist`, `build`, etc.
 - Searches hidden files
 - Smart case sensitivity
 - Custom file types: `.astro`, `.vue`, `.svelte`, `.mdx`, etc.
+- Color-coded output optimized for dark terminals
 
-**Why:** Ripgrep config in `$RIPGREP_CONFIG_PATH` provides sensible defaults for development.
+**Settings:**
+- `USE_BUILTIN_RIPGREP: "0"` in `~/.claude/settings.json`
+- Config file: `~/Developer/dotfiles/shell/ripgrep/ripgreprc`
+
+**Only use Grep tool when:** You specifically need structured JSON output for programmatic processing.
 
 ### JSON Processing (jq Best Practices)
 ```bash
@@ -126,7 +141,11 @@ Git automatically switches between identities:
 - ✅ Use `bat` instead of `cat` for syntax highlighting
 - ✅ Use `git st` instead of `git status` for concise output
 - ✅ Use `git lg` instead of `git log` for readable history
-- ✅ Use `rg` for searching (already optimized)
+
+**Search Operations:**
+- ✅ Use `rg` via Bash tool (respects custom config)
+- ❌ Avoid Claude's Grep tool (bypasses custom settings)
+- ✅ Example: `rg "pattern" --type ts -A 3` for TypeScript searches
 
 **JSON Operations:**
 - ✅ Use `jq -C .` for colorized JSON output

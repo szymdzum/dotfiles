@@ -41,6 +41,9 @@ mkdir -p ~/.config
 # Install shell configuration
 echo -e "${BLUE}🐚 Installing shell configuration...${NC}"
 create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
+if [[ -f "$DOTFILES_DIR/shell/.bash_profile" ]]; then
+    create_symlink "$DOTFILES_DIR/shell/.bash_profile" "$HOME/.bash_profile"
+fi
 
 # Install Zed editor configuration
 echo -e "${BLUE}✏️  Installing Zed configuration...${NC}"
@@ -59,6 +62,10 @@ echo -e "${BLUE}🤖 Installing Codex configuration...${NC}"
 if [[ -f "$DOTFILES_DIR/codex/config.toml" ]]; then
     mkdir -p ~/.codex
     create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
+fi
+if [[ -f "$DOTFILES_DIR/codex/bash-agent-aliases.sh" ]]; then
+    mkdir -p ~/.config/codex
+    create_symlink "$DOTFILES_DIR/codex/bash-agent-aliases.sh" "$HOME/.config/codex/bash-agent-aliases.sh"
 fi
 
 # Install Gemini CLI configuration
@@ -132,6 +139,13 @@ if [[ -f "$DOTFILES_DIR/glab/aliases.yml" ]]; then
         echo -e "${YELLOW}📝 Created config.yml from template (add your tokens there)${NC}"
     else
         echo -e "${GREEN}✅ GitLab CLI aliases linked (config.yml stays in ~/.config/glab-cli/)${NC}"
+    fi
+    
+    # Install GitLab TLS certificate if it exists
+    if [[ -f "$DOTFILES_DIR/glab/certs/gitlab-kfplc-chain.pem" ]]; then
+        mkdir -p ~/.config/glab-cli/certs
+        create_symlink "$DOTFILES_DIR/glab/certs/gitlab-kfplc-chain.pem" "$HOME/.config/glab-cli/certs/gitlab-kfplc-chain.pem"
+        echo -e "${GREEN}✅ GitLab TLS certificate linked${NC}"
     fi
 else
     echo -e "${YELLOW}⚠️  No glab config found (skipping)${NC}"

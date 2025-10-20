@@ -1,4 +1,12 @@
 {
+  "env": {
+    "USE_BUILTIN_RIPGREP": "0",
+    "RIPGREP_CONFIG_PATH": "/Users/szymondzumak/Developer/dotfiles/shell/ripgrep/ripgreprc",
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
+    "BASH_DEFAULT_TIMEOUT_MS": "30000",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1"
+  },
   "statusLine": {
     "type": "command",
     "command": "/Users/szymondzumak/Developer/dotfiles/claude/statusline.sh"
