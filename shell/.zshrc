@@ -29,3 +29,7 @@ source "$MODULES_DIR/functions.zsh"
 
 # Load work-specific configurations
 [ -f ~/.zshrc.work ] && source ~/.zshrc.work
+alias chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+# Chrome alias for headless mode
+alias chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'

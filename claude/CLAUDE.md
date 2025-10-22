@@ -1,4 +1,4 @@
-# Global Claude Code Configuration
+# Global Configuration
 
 Personal preferences and optimizations for all projects.
 

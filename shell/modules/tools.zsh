@@ -32,9 +32,9 @@ if [[ -s "$NVM_DIR/nvm.sh" ]]; then
       # Wrap real nvm so corepack is enabled whenever the active Node changes.
       nvm() {
         __nvm_real "$@"
-        local status=$?
+        local exit_code=$?
         __nvm_enable_corepack_once
-        return $status
+        return $exit_code
       }
     fi
     nvm "$@"

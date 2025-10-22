@@ -207,9 +207,6 @@
         "activate_script": "default"
       }
     },
-    "env": {
-      "PATH": "/Users/szymondzumak/.nvm/versions/node/v22.20.0/bin:$PATH"
-    },
     "font_family": null,
     "font_features": null,
     "font_size": null,
