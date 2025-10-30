@@ -10,8 +10,12 @@
 # Smart case-insensitive search (case-insensitive unless uppercase letters are used)
 --smart-case
 
-# Search hidden files and directories (but respect .gitignore)
+# Search hidden files and directories
 --hidden
+
+# Ignore VCS ignore files to discover gitignored agentic docs (WARP.md, AGENTS.md, etc.)
+# while --glob exclusions below still filter out noise like node_modules
+--no-ignore-vcs
 
 # Follow symbolic links
 --follow
@@ -43,6 +47,20 @@
 --glob=!*.log
 --glob=!.idea/*
 --glob=!.vscode/*
+
+# Additional build/vendor directories
+--glob=!vendor/*
+--glob=!target/*
+--glob=!out/*
+--glob=!tmp/*
+--glob=!temp/*
+--glob=!*.egg-info/*
+--glob=!.mypy_cache/*
+--glob=!.tox/*
+--glob=!.gradle/*
+--glob=!*.swp
+--glob=!*.swo
+--glob=!*~
 
 # Custom File Type Definitions for Modern Web Development
 --type-add=web:*.{html,css,scss,sass,less}

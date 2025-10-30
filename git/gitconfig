@@ -29,7 +29,7 @@
 	pager = less -FRX
 
 	# Use .gitignore patterns globally
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/szymondzumak/.gitignore_global
 
 [log]
 	# Consistent, parseable format

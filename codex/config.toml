@@ -18,6 +18,7 @@ sandbox_mode = "danger-full-access"      # read-only | workspace-write | danger-
 # Editor Integration
 # ============================================================================
 file_opener = "vscode"  # vscode | vscode-insiders | cursor | windsurf | none
+model_reasoning_effort = "medium"
                         # Note: Set to vscode as fallback (zed not yet supported)
 
 # ============================================================================

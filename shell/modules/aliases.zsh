@@ -19,6 +19,7 @@ alias repos="cd $REPOS"
 alias docs="cd ~/Documents"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
+alias dot="cd $DOTFILES_DIR"
 
 # === System Information ===
 alias path='echo -e ${PATH//:/\\n}'

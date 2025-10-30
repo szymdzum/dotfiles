@@ -67,3 +67,23 @@ work() {
   fi
   pwd
 }
+
+# Auto-activate Python venv when entering a directory
+auto_activate_venv() {
+  # Deactivate if we left a venv directory
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    local venv_dir="$(dirname "$VIRTUAL_ENV")"
+    if [[ "$PWD"/ != "$venv_dir"/* ]]; then
+      deactivate 2>/dev/null
+    fi
+  fi
+
+  # Activate if we entered a directory with venv
+  if [[ -z "$VIRTUAL_ENV" && -f "venv/bin/activate" ]]; then
+    source venv/bin/activate
+  fi
+}
+
+# Hook into directory changes
+autoload -U add-zsh-hook
+add-zsh-hook chpwd auto_activate_venv

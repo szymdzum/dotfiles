@@ -12,6 +12,11 @@
     "enabled_in_text_threads": false
   },
   "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    },
     "always_allow_tool_actions": true
   },
   "features": {
