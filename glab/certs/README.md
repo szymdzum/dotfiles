@@ -8,7 +8,7 @@ Certificate chain for `gitlab.kfplc.com` to fix TLS verification issues.
 ```yaml
 hosts:
   gitlab.kfplc.com:
-    ca_cert: /Users/szymondzumak/.config/glab-cli/certs/gitlab-kfplc-chain.pem
+    ca_cert: $HOME/.config/glab-cli/certs/gitlab-kfplc-chain.pem
 ```
 
 ## Updating the Certificate

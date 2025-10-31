@@ -70,7 +70,7 @@
   "telemetry": {
     "enabled": true,
     "target": "local",
-    "outfile": "/Users/szymondzumak/.gemini/telemetry.log",
+    "outfile": "$HOME/.gemini/telemetry.log",
     "logPrompts": false
   },
   "privacy": {

@@ -73,17 +73,17 @@ experimental_use_rmcp_client = true  # Better MCP support + OAuth for HTTP serve
 # Filesystem MCP Server - Safe read-only access to specific directories
 # [mcp_servers.filesystem_docs]
 # command = "npx"
-# args = ["-y", "@modelcontextprotocol/server-filesystem", "/Users/szymondzumak/Developer/docs"]
+# args = ["-y", "@modelcontextprotocol/server-filesystem", "$HOME/Developer/docs"]
 # enabled = true
 
 # ============================================================================
 # Trusted Projects
 # ============================================================================
-[projects."/Users/szymondzumak/Developer/dotfiles"]
+[projects."$HOME/Developer/dotfiles"]
 trust_level = "trusted"
 
-[projects."/Users/szymondzumak/Developer/kf-ng-web"]
+[projects."$HOME/Developer/kf-ng-web"]
 trust_level = "trusted"
 
-[projects."/Users/szymondzumak/Developer"]
+[projects."$HOME/Developer"]
 trust_level = "trusted"

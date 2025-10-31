@@ -40,6 +40,7 @@ mkdir -p ~/.config
 
 # Install shell configuration
 echo -e "${BLUE}🐚 Installing shell configuration...${NC}"
+create_symlink "$DOTFILES_DIR/shell/.zshenv" "$HOME/.zshenv"
 create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
 if [[ -f "$DOTFILES_DIR/shell/.bash_profile" ]]; then
     create_symlink "$DOTFILES_DIR/shell/.bash_profile" "$HOME/.bash_profile"
@@ -190,7 +191,7 @@ fi
 # Make sure the shell configuration is sourced
 echo -e "${BLUE}🔄 Reloading shell configuration...${NC}"
 if [[ "$SHELL" == */zsh ]]; then
-    source ~/.zshrc || true
+    zsh -c 'source ~/.zshrc' 2>/dev/null || true
 fi
 
 # Create convenience symlinks for easy access to secret files

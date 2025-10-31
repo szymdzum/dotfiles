@@ -22,7 +22,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "icon_theme": "Light Charmed Icons",
+  "icon_theme": "Material Icon Theme",
   "buffer_font_family": "Menlo",
   "ui_font_size": 18,
   "buffer_font_size": 17,
