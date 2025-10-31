@@ -1,3 +1,4 @@
+
 # Modular ZSH Configuration
 # This is the main .zshrc file that loads all modules from shell/modules/
 #
@@ -33,4 +34,3 @@ alias chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 # Chrome alias for headless mode
 alias chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-eval "$(pyenv init -)"

@@ -1,80 +1,71 @@
 # Tools Module
 # Development tool configurations with optimized loading
 
-# === Ripgrep Configuration ===
-export RIPGREP_CONFIG_PATH="$DOTFILES_DIR/shell/ripgrep/ripgreprc"
-
 # === NVM (Node Version Manager) - Lazy Loading ===
 export NVM_DIR="$HOME/.nvm"
+typeset -g __NVM_LAZY_LOADED=0
 
-if [[ -s "$NVM_DIR/nvm.sh" ]]; then
-  __nvm_last_corepack_node=""
-
-  __nvm_enable_corepack_once() {
-    command -v corepack >/dev/null 2>&1 || return 0
-    local current_node
-    current_node="$(node -v 2>/dev/null)" || return 0
-    if [[ "$__nvm_last_corepack_node" == "$current_node" ]]; then
-      return 0
-    fi
-    corepack enable >/dev/null 2>&1
-    __nvm_last_corepack_node="$current_node"
-  }
-
-  __nvm_loaded=0
-  nvm() {
-    if (( __nvm_loaded == 0 )); then
-      unset -f nvm
-      . "$NVM_DIR/nvm.sh"
-      [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
-      functions -c nvm __nvm_real
-      __nvm_loaded=1
-      # Wrap real nvm so corepack is enabled whenever the active Node changes.
-      nvm() {
-        __nvm_real "$@"
-        local exit_code=$?
-        __nvm_enable_corepack_once
-        return $exit_code
-      }
-    fi
-    nvm "$@"
-  }
-
-  load-nvmrc() {
-    # Ensure nvm is initialised before we look for .nvmrc
-    nvm --version >/dev/null 2>&1 || return
-    typeset -f nvm_find_nvmrc >/dev/null 2>&1 || return
-    local nvmrc_path
-    nvmrc_path="$(nvm_find_nvmrc 2>/dev/null)"
-    if [[ -z "$nvmrc_path" ]]; then
-      return
-    fi
-
-    local desired_version
-    desired_version="$(<"$nvmrc_path")"
-    local current_version
-    current_version="$(nvm current 2>/dev/null)"
-
-    if [[ "$desired_version" != "$current_version" ]]; then
-      nvm use --silent "$desired_version" >/dev/null 2>&1
-    fi
-  }
-
-  if [[ -o interactive ]]; then
-    autoload -U add-zsh-hook
-    add-zsh-hook chpwd load-nvmrc
-    load-nvmrc
+__nvm_lazy_load() {
+  (( __NVM_LAZY_LOADED )) && return
+  __NVM_LAZY_LOADED=1
+  # Remove wrappers to avoid recursion
+  unset -f nvm node npm npx yarn pnpm 2>/dev/null
+  # Load NVM without auto-switching versions yet
+  if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    . "$NVM_DIR/nvm.sh" --no-use
   fi
-fi
+  # Optional completions (cheap, but keep lazy too)
+  [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
+}
+
+# Use corepack directly to avoid enabling costs unless necessary
+__nvm_corepack_exec() {
+  # This uses corepack as a launcher so we don't need `corepack enable`.
+  if command -v corepack >/dev/null 2>&1; then
+    command corepack "$@"
+    return $?
+  fi
+  # Fallback to the underlying command if corepack isn't available
+  command "$@"
+}
+
+# .nvmrc auto-use: only load NVM when entering a dir with .nvmrc
+autoload -Uz add-zsh-hook
+__nvm_auto_use_on_chpwd() {
+  if [[ -f .nvmrc ]]; then
+    __nvm_lazy_load
+    nvm use --silent >/dev/null 2>&1 || true
+  fi
+}
+add-zsh-hook chpwd __nvm_auto_use_on_chpwd
+# Do it once for the starting directory
+__nvm_auto_use_on_chpwd
+
+# Wrappers: load NVM on first use, then delegate to real commands
+nvm()  { __nvm_lazy_load; command nvm "$@"; }
+node() { __nvm_lazy_load; command node "$@"; }
+npm()  { __nvm_lazy_load; command npm "$@"; }
+npx()  { __nvm_lazy_load; command npx "$@"; }
+
+# Yarn/Pnpm via corepack when available, after loading NVM
+yarn() { __nvm_lazy_load; __nvm_corepack_exec yarn "$@"; }
+pnpm() { __nvm_lazy_load; __nvm_corepack_exec pnpm "$@"; }
 
 # === PyEnv (Python Version Manager) - Lazy Loading ===
-# Check if pyenv is installed before configuring
-if command -v pyenv &> /dev/null; then
-  export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="${PYENV_ROOT:-/opt/homebrew/opt/pyenv}"
+typeset -g __PYENV_LAZY_LOADED=0
 
-  # Lazy load pyenv
-  pyenv() {
-    eval "$(command pyenv init -)"
-    pyenv "$@"
-  }
-fi
+__pyenv_lazy_load() {
+  (( __PYENV_LAZY_LOADED )) && return
+  __PYENV_LAZY_LOADED=1
+  # Remove wrappers to avoid recursion
+  unset -f pyenv python pip 2>/dev/null
+  if command -v pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+  fi
+}
+
+# Wrapper functions
+pyenv() { __pyenv_lazy_load; command pyenv "$@"; }
+python() { __pyenv_lazy_load; command python "$@"; }
+pip() { __pyenv_lazy_load; command pip "$@"; }
