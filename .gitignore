@@ -51,3 +51,13 @@ gh/hosts.yml
 glab/config.yml
 # glab/aliases.yml IS tracked (contains aliases only)
 # glab/config.template.yml IS tracked (template without secrets)
+
+# macOS metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Git local config overrides (machine-specific)
+git/.gitconfig.local
